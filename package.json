@@ -16,7 +16,7 @@
     "scripts": {
         "build": "tsc",
         "test": "yarn tsc src/index.test.ts",
-        "watch": "tsc --watch",
+        "test:watch": "tsc --watch src/index.test.ts",
         "bump-version": "node scripts/bumpVersion.mjs"
     }
 }
