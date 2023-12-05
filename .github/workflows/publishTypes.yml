@@ -31,26 +31,22 @@ jobs:
           registry-url: https://registry.npmjs.org/
   
       - name: Checkout latest master
-        working-directory: ./
         run: | 
           git checkout master
           git pull origin master
 
       - name: Build types
-        working-directory: ./
         run: |
           yarn install
           yarn build
 
       - name: Update package version
-        working-directory: ./
         env:
           VERSION: ${{ inputs.version }}
         run: |
           yarn bump-version --v $VERSION
 
       - name: Commit updated package.json
-        working-directory: ./
         run: | 
           git add package.json
           git commit -m "Update @seatsio/seatsio-types"
