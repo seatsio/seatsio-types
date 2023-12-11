@@ -1,0 +1,59 @@
+# Very important!
+# Make sure that the github token has read AND WRITE access on github.
+#   1. hit https://github.com/seatsio/[REPO]/settings/actions
+#   2. under "Workflow permissions", make sure "Read and write permissions" is checked instead of the (default?) read only.
+
+name: 'Update and publish @seatsio/seatsio-types'
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Bump version or release current version without changing package.json. Major for incompatible API changes, minor for adding backwards compatible features, patch for bugfixes.'
+        required: true
+        default: 'patch'
+        type: choice
+        options:
+          - current
+          - patch
+          - minor
+          - major
+
+jobs:
+  updateVersionAndPublish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: fregante/setup-git-user@v2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://registry.npmjs.org/
+  
+      - name: Checkout latest master
+        run: | 
+          git checkout master
+          git pull origin master
+
+      - name: Build types
+        run: |
+          yarn install
+          yarn build
+
+      - name: Update package version
+        env:
+          VERSION: ${{ inputs.version }}
+        run: |
+          yarn bump-version --v $VERSION
+
+      - name: Commit updated package.json
+        run: | 
+          git add package.json
+          git commit -m "Update @seatsio/seatsio-types"
+          git push origin master
+
+      - name: Publish new version to NPM
+        uses: JS-DevTools/npm-publish@v3
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+          package: './package.json'
