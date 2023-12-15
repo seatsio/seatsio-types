@@ -1112,6 +1112,7 @@ interface Labels {
 export type PriceType = number | string
 
 export interface InteractiveObjectProps {
+    readonly id: string
     readonly label: string
     readonly labels: Labels
 }
