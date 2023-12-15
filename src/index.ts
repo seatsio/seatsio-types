@@ -1215,19 +1215,19 @@ export interface SeatingChart {
     changeConfig: (config: ConfigChange) => Promise<void>
     clearSelection: () => Promise<void>
     deselectCategories: (categoryIds: string[]) => Promise<void>
-    deselectObjects: (objects: string[] | Selection[]) => Promise<void>
+    deselectObjects: (objects: (string | Selection)[]) => Promise<void>
     destroy: () => void
     findObject: (label: string) => Promise<SelectableObjectProps>
     getReportBySelectability: () => Promise<Object>
     holdToken: string
     listCategories: () => Promise<Category[]>
-    listSelectedObjects: () => Promise<(any)[]>
+    listSelectedObjects: <T extends SelectableObjectProps>() => Promise<T[]>
     render: () => SeatingChart
     rerender: () => void
     resetView: () => Promise<void>
     selectCategories: (categoryIds: string[]) => Promise<void>
     selectedObjects: string[]
-    selectObjects: (objects: string [] | Selection[]) => Promise<void>
+    selectObjects: (objects: (string | Selection)[]) => Promise<void>
     pulse: (objects: string []) => Promise<void>
     unpulse: (objects: string []) => Promise<void>
     startNewSession: () => Promise<void>
