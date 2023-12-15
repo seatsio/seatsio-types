@@ -1,5 +1,4 @@
 import { ChartDesignerConfigOptions, ChartRendererConfigOptions, EventManagerConfigOptions } from './index'
-import { isSeat } from "./typeutils"
 
 // Set up a fully popuplated Chart Renderer config
 const fullChartRendererConfig: Required<ChartRendererConfigOptions> = {
