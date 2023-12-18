@@ -288,7 +288,6 @@ seatingChart.listSelectedObjects().then(objects => {
         obj.companionSeat
         obj.deselect
         obj.displayObjectType
-        obj.id
         obj.label
         obj.labels
         obj.objectType
