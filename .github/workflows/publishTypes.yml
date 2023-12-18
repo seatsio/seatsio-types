@@ -30,10 +30,10 @@ jobs:
           node-version: 20
           registry-url: https://registry.npmjs.org/
   
-      - name: Checkout latest master
+      - name: Checkout latest main
         run: | 
-          git checkout master
-          git pull origin master
+          git checkout main
+          git pull origin main
 
       - name: Build types
         run: |
@@ -50,7 +50,7 @@ jobs:
         run: | 
           git add package.json
           git commit -m "Update @seatsio/seatsio-types"
-          git push origin master
+          git push origin main
 
       - name: Publish new version to NPM
         uses: JS-DevTools/npm-publish@v3
