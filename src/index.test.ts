@@ -262,7 +262,7 @@ new seatsio.EventManager({
 })
 
 // Global seatsio object works as expected
-new seatsio.SeatingChart({
+const seatingChart = new seatsio.SeatingChart({
     workspaceKey: 'myWorkspaceKey',
     event: 'myEvent'
 })
@@ -275,4 +275,27 @@ new seatsio.EventManager({
 
 new seatsio.SeatingChartDesigner({
     secretKey: 'mySecretKey'
+})
+
+// Seating chart tests
+seatingChart.selectObjects(['A1', { id: 'someId', ticketType: 'aTicketType', amount: 2}])
+seatingChart.deselectObjects(['A1', { id: 'someId', ticketType: 'aTicketType', amount: 2}])
+
+seatingChart.listSelectedObjects().then(objects => {
+    objects.forEach(obj => {
+        obj.accessible
+        obj.category
+        obj.companionSeat
+        obj.deselect
+        obj.displayObjectType
+        obj.label
+        obj.labels
+        obj.objectType
+        obj.pricing
+        obj.restrictedView
+        obj.select
+        obj.selectable
+        obj.selected
+        obj.selectedTicketType
+    })
 })
