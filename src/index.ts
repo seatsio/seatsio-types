@@ -1217,7 +1217,7 @@ export interface SeatingChart {
     deselectCategories: (categoryIds: string[]) => Promise<void>
     deselectObjects: (objects: (string | Selection)[]) => Promise<void>
     destroy: () => void
-    findObject: (label: string) => Promise<SelectableObjectProps>
+    findObject: <T extends SelectableObjectProps>(label: string) => Promise<T>
     getReportBySelectability: () => Promise<Object>
     holdToken: string
     listCategories: () => Promise<Category[]>
