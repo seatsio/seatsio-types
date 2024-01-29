@@ -3,7 +3,7 @@
 #   1. hit https://github.com/seatsio/[REPO]/settings/actions
 #   2. under "Workflow permissions", make sure "Read and write permissions" is checked instead of the (default?) read only.
 
-name: 'Update and publish @seatsio/seatsio-types'
+name: 'Release'
 
 on:
   workflow_dispatch:
@@ -11,7 +11,7 @@ on:
       version:
         description: 'Bump version or release current version without changing package.json. Major for incompatible API changes, minor for adding backwards compatible features, patch for bugfixes.'
         required: true
-        default: 'patch'
+        default: 'minor'
         type: choice
         options:
           - current
@@ -29,7 +29,7 @@ jobs:
         with:
           node-version: 20
           registry-url: https://registry.npmjs.org/
-  
+
       - name: Checkout latest main
         run: | 
           git checkout main
