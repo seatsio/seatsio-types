@@ -75,7 +75,8 @@ const fullChartRendererConfig: Required<ChartRendererConfigOptions> = {
     categoryFilter: {
         enabled: false,
         multiSelect: true,
-        zoomOnSelect: false
+        zoomOnSelect: false,
+        sortBy: 'none'
     },
     availableCategories: [1, 2, 'Balcony'],
     unavailableCategories: [3, 4, 'Stalls'],
