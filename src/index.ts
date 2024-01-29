@@ -942,6 +942,11 @@ export type CategoryFilter = {
      * @default false
      */
     zoomOnSelect?: boolean
+    /**
+     * Sort categories by price, or use the order that's defined on the chart
+     * @default price
+     */
+    sortBy?: 'price' | 'none'
 }
 
 // Deprecated config values
