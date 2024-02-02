@@ -33,12 +33,12 @@ export interface CommonConfigOptions {
     divId?: string
 }
 
-interface WithEvents {
+export interface WithEvents {
     event?: string
     events?: string[]
 }
 
-interface WithEvent {
+export interface WithEvent {
     event: string
 }
 
@@ -304,7 +304,7 @@ export type ExtractedEventManagerProps = Pick<ChartRendererConfigOptions,
 >
 
 
-interface BaseEventManagerConfigOptions extends CommonConfigOptions, ExtractedEventManagerProps, EventManagerCallbacks {
+export interface BaseEventManagerConfigOptions extends CommonConfigOptions, ExtractedEventManagerProps, EventManagerCallbacks {
     mode: EventManagerMode
     /**
      * The secret key of a workspace.
@@ -356,29 +356,29 @@ interface BaseEventManagerConfigOptions extends CommonConfigOptions, ExtractedEv
     }
 }
 
-interface EventManagerManageObjectStatusesModeConfigOptions extends BaseEventManagerConfigOptions, WithEvents {
+export interface EventManagerManageObjectStatusesModeConfigOptions extends BaseEventManagerConfigOptions, WithEvents {
     mode: 'manageObjectStatuses'
     session?: Session
 }
 
-interface EventManagerManageChannelsModeConfigOptions extends BaseEventManagerConfigOptions, WithEvent {
+export interface EventManagerManageChannelsModeConfigOptions extends BaseEventManagerConfigOptions, WithEvent {
     mode: 'manageChannels'
     manageChannelsList?: boolean
     unavailableObjectsSelectable?: boolean
 }
 
-interface EventManagerManageCategoriesModeConfigOptions extends BaseEventManagerConfigOptions, WithEvent {
+export interface EventManagerManageCategoriesModeConfigOptions extends BaseEventManagerConfigOptions, WithEvent {
     mode: 'manageCategories'
     unavailableObjectsSelectable?: boolean
 }
 
-interface EventManagerFilterSectionsModeConfigOptions extends BaseEventManagerConfigOptions, WithEvent {
+export interface EventManagerFilterSectionsModeConfigOptions extends BaseEventManagerConfigOptions, WithEvent {
     mode: 'filterSections'
     onFilteredSectionChange: (sectionLabels: string[]) => {}
 }
 
 
-interface EventManagerSelectModeConfigOptions extends BaseEventManagerConfigOptions, WithEvents {
+export interface EventManagerSelectModeConfigOptions extends BaseEventManagerConfigOptions, WithEvents {
     mode: 'select'
     maxSelectedObjects?: SelectionLimiter
     numberOfPlacesToSelect?: number
@@ -390,7 +390,7 @@ interface EventManagerSelectModeConfigOptions extends BaseEventManagerConfigOpti
     selectableObjects?: string[]
 }
 
-interface EventManagerStaticModeConfigOptions extends BaseEventManagerConfigOptions, WithEvents {
+export interface EventManagerStaticModeConfigOptions extends BaseEventManagerConfigOptions, WithEvents {
     mode: 'static'
     onObjectMouseOver?: (object: SelectableObjectProps) => void
     onObjectMouseOut?: (object: SelectableObjectProps) => void
