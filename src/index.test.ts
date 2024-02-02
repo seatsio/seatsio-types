@@ -1,4 +1,4 @@
-import { ChartDesignerConfigOptions, ChartRendererConfigOptions, EventManagerConfigOptions } from './index'
+import { ChartDesignerConfigOptions, ChartRendererConfigOptions, EventManagerConfigOptions, EventManagerFilterSectionsModeConfigOptions, EventManagerManageCategoriesModeConfigOptions, EventManagerManageChannelsModeConfigOptions, EventManagerManageObjectStatusesModeConfigOptions, EventManagerSelectModeConfigOptions, EventManagerStaticModeConfigOptions } from './index'
 
 // Set up a fully popuplated Chart Renderer config
 const fullChartRendererConfig: Required<ChartRendererConfigOptions> = {
@@ -217,6 +217,63 @@ const fullEventManagerConfig: Required<EventManagerConfigOptions> = {
     themeColors: {},
     themePreset: 'someTheme'
 }
+
+// Static Mode
+const eventManagerStaticModeConfig: Required<EventManagerStaticModeConfigOptions> = {
+    ...fullEventManagerConfig,
+    mode: 'static',
+    onObjectMouseOver: object => {},
+    onObjectMouseOut: object => {},
+    tooltipContents: object => 'tooltipContents',
+    events: ['eventA', 'eventB']
+}
+
+// Manage object statuses
+const eventManagerManageObjectStatusesConfig: Required<EventManagerManageObjectStatusesModeConfigOptions> = {
+    ...fullEventManagerConfig,
+    mode: 'manageObjectStatuses',
+    events: ['eventA', 'eventB'],
+    session: 'continue'
+}
+
+// Manage channels
+const eventManagerManageChannelsConfig: Required<EventManagerManageChannelsModeConfigOptions> = {
+    ...fullEventManagerConfig,
+    mode: 'manageChannels',
+    event: 'eventA',
+    manageChannelsList: true,
+    unavailableObjectsSelectable: false
+}
+
+// Manage categories
+const eventManagerManageCategoriessConfig: Required<EventManagerManageCategoriesModeConfigOptions> = {
+    ...fullEventManagerConfig,
+    mode: 'manageCategories',
+    unavailableObjectsSelectable: false
+}
+
+// Filter sections
+const eventManagerFilterSectionsConfig: Required<EventManagerFilterSectionsModeConfigOptions> = {
+    ...fullEventManagerConfig,
+    mode: 'filterSections',
+    onFilteredSectionChange: (sectionsLabels) => ({})
+}
+
+// Select mode
+const eventManagerSelectModeConfig: Required<EventManagerSelectModeConfigOptions> = {
+    ...fullEventManagerConfig,
+    mode: 'select',
+    maxSelectedObjects: 1,
+    numberOfPlacesToSelect: 1,
+    selectedObjects: [],
+    selectionBy: 'places',
+    ticketTypes: [],
+    tooltipContents: (object: object) => '',
+    unavailableObjectsSelectable: false,
+    selectableObjects: ['A'],
+    events: ['eventA', 'eventB']
+}
+
 
 // Set up a fully popuplated Chart Designer config
 const chartDesignerConfig: Required<ChartDesignerConfigOptions> = {
