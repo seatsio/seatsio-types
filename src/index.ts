@@ -943,10 +943,10 @@ export type CategoryFilter = {
      */
     zoomOnSelect?: boolean
     /**
-     * Sort categories by price, or use the order that's defined on the chart
+     * Sort categories by property, or use `none` for the order they are defined on the chart
      * @default price
      */
-    sortBy?: 'price' | 'none'
+    sortBy?: 'none' | 'name' | 'price' | 'priceDescending'
 }
 
 // Deprecated config values
