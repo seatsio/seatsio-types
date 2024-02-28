@@ -254,6 +254,9 @@ export interface ChartRendererConfigOptions extends DeprecatedConfigProperties, 
         colorSelected?: string
         cursorTooltipBackgroundColor?: string
         colorTitle?: string
+        availableObjectColor?: string
+        selectedObjectColor?: string
+        errorColor?: string 
     }
     /**
      * Sets the preset of styles to use for the seating chart user interface. {@link https://docs.seats.io/docs/renderer/stylepreset See documentation}
