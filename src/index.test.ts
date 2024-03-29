@@ -34,7 +34,7 @@ const fullChartRendererConfig: Required<ChartRendererConfigOptions> = {
     selectionValidators: [
         { type: 'minimumSelectedPlaces', minimum: 4 },
         { type: 'consecutiveSeats' },
-        { type: 'noOrphanSeats', highlight: false, mode: 'lenient'}
+        { type: 'noOrphanSeats', highlight: false, mode: 'lenient', ignoreCategories: false}
     ],
     maxSelectedObjects: [
         { ticketType: 'adult', quantity: 2 },
