@@ -380,7 +380,6 @@ export interface EventManagerFilterSectionsModeConfigOptions extends BaseEventMa
     onFilteredSectionChange: (sectionLabels: string[]) => {}
 }
 
-
 export interface EventManagerSelectModeConfigOptions extends BaseEventManagerConfigOptions, WithEvents {
     mode: 'select'
     maxSelectedObjects?: SelectionLimiter
@@ -391,6 +390,22 @@ export interface EventManagerSelectModeConfigOptions extends BaseEventManagerCon
     tooltipContents?: (object: object) => string
     unavailableObjectsSelectable?: boolean
     selectableObjects?: string[]
+    /**
+     * @param object
+     * @param defaultIcon
+     * @param extraConfig
+     * @returns A string with the name of a FontAwesome v4.7.0 icon. {@link https://fontawesome.com/v4.7.0/icons/ See the full list of available icons}.
+     * For more details, {@link https://docs.seats.io/docs/event-manager/modes/select#objecticon see the documentation}.
+     */
+    objectIcon?: (object: SelectableObjectProps, defaultIcon: string | null, extraConfig?: ExtraConfig) => string
+    objectTooltip?: {
+        showOrderId?: boolean
+        showTechnicalLabel?: boolean
+        showLabel?: boolean
+        showCategory?: boolean
+        showChannel?: boolean
+        showActionHint?: boolean
+    }
 }
 
 export interface EventManagerStaticModeConfigOptions extends BaseEventManagerConfigOptions, WithEvents {
@@ -1254,6 +1269,7 @@ export interface EventManager extends Pick<SeatingChart,
     | 'findObject'
     | 'listCategories'
     | 'listSelectedObjects'
+    | 'selectedObjects'
     | 'render'
     | 'rerender'
     | 'resetView'
