@@ -1,6 +1,6 @@
 import { ChartDesignerConfigOptions, ChartRendererConfigOptions, EventManagerConfigOptions, EventManagerFilterSectionsModeConfigOptions, EventManagerManageCategoriesModeConfigOptions, EventManagerManageChannelsModeConfigOptions, EventManagerManageObjectStatusesModeConfigOptions, EventManagerSelectModeConfigOptions, EventManagerStaticModeConfigOptions } from './index'
 
-// Set up a fully popuplated Chart Renderer config
+// Set up a complete Chart Renderer config
 const fullChartRendererConfig: Required<ChartRendererConfigOptions> = {
     activeFloor: '1',
     container: document.body,
@@ -161,7 +161,7 @@ const fullChartRendererConfig: Required<ChartRendererConfigOptions> = {
     tooltipStyle: 'someStyle'
 }
 
-// Set up a fully popuplated Event Manager config
+// Set up a complete Event Manager config
 const fullEventManagerConfig: Required<EventManagerConfigOptions> = {
     divId: 'chartContainer',
     container: document.body,
@@ -188,8 +188,8 @@ const fullEventManagerConfig: Required<EventManagerConfigOptions> = {
     },
     mode: 'manageObjectStatuses',
     objectTooltip: {
-        showOrderId: false,
-        showTechnicalLabel: true
+        showOrderId: true,
+        showTechnicalLabel: false
     },
     secretKey: 'mySecretKey',
     viewSettingsDefaults: {
@@ -271,11 +271,19 @@ const eventManagerSelectModeConfig: Required<EventManagerSelectModeConfigOptions
     tooltipContents: (object: object) => '',
     unavailableObjectsSelectable: false,
     selectableObjects: ['A'],
-    events: ['eventA', 'eventB']
+    events: ['eventA', 'eventB'],
+    objectIcon: (_object, _defaultIcon, _extraConfig) => 'circle',
+    objectTooltip: {
+        showOrderId: true,
+        showTechnicalLabel: true,
+        showLabel: true,
+        showCategory: true,
+        showChannel: true,
+        showActionHint: true
+    }
 }
 
-
-// Set up a fully popuplated Chart Designer config
+// Set up a complete Chart Designer config
 const chartDesignerConfig: Required<ChartDesignerConfigOptions> = {
     secretKey: 'mySecretKey',
     divId: 'chartContainer',
