@@ -123,7 +123,7 @@ export interface ChartRendererConfigOptions extends DeprecatedConfigProperties, 
      * @param ticketType The ticket type for which the user clicked on the plus button. Optional.
      * {@link https://docs.seats.io/docs/renderer/config-cangaselectionbeincreased See documentation}
      */
-    canGASelectionBeIncreased?: (gaArea: GeneralAdmissionAreaProps, defaultValue: boolean, extraConfig: ExtraConfig, ticketType?: TicketTypeJson) => boolean
+    canGASelectionBeIncreased?: (gaArea: GeneralAdmissionArea, defaultValue: boolean, extraConfig: ExtraConfig, ticketType?: TicketTypeJson) => boolean
     /**
      * If your chart div is enclosed within a <form>element, you can use this configuration option to automatically add the selected seat IDs to the form data. This is one of the ways you can pass the selected seats to your server, so that you can book them later on through the Seats API.
      * {@link https://docs.seats.io/docs/renderer/config-selectedobjectsinputname See documentation}
@@ -142,7 +142,7 @@ export interface ChartRendererConfigOptions extends DeprecatedConfigProperties, 
     /**
      * A function whose result will be displayed as extra information on the cursor tooltip. {@link https://docs.seats.io/docs/renderer/config-tooltipinfo See documentation}
      */
-    tooltipInfo?: <T extends SelectableObjectProps>(object: T) => string
+    tooltipInfo?: (object: SelectableObject) => string
     /**
      * On mobile, when displaying a chart with sections, a tooltip is shown at the bottom of the screen with the section name and pricing.
      * You can hide this tooltip on mobile by passing `showActiveSectionTooltipOnMobile: false`.
@@ -175,8 +175,8 @@ export interface ChartRendererConfigOptions extends DeprecatedConfigProperties, 
      * Leaves the specified categories normally visible, while making all others dimmed out. The array can be a list of category IDs or labels.
      */
     filteredCategories?: CategoryKey[]
-    objectColor?: (object: SelectableObjectProps, defaultColor: string, extraConfig: ExtraConfig) => string
-    objectLabel?: (object: SelectableObjectProps, defaultLabel: string, extraConfig: ExtraConfig) => string
+    objectColor?: (object: SelectableObject, defaultColor: string, extraConfig: ExtraConfig) => string
+    objectLabel?: (object: SelectableObject, defaultLabel: string, extraConfig: ExtraConfig) => string
     /**
      * @param object
      * @param defaultIcon
@@ -184,8 +184,8 @@ export interface ChartRendererConfigOptions extends DeprecatedConfigProperties, 
      * @returns A string with the name of a FontAwesome v4.7.0 icon. {@link https://fontawesome.com/v4.7.0/icons/ See the full list of available icons}.
      * For more details, {@link https://docs.seats.io/docs/renderer/config-objecticon see the documentation}.
      */
-    objectIcon?: (object: SelectableObjectProps, defaultIcon: string | null, extraConfig?: ExtraConfig) => string
-    sectionColor?: (section: SectionProps, defaultColor: string, extraConfig: ExtraConfig) => string
+    objectIcon?: (object: SelectableObject, defaultIcon: string | null, extraConfig?: ExtraConfig) => string
+    sectionColor?: (section: Section, defaultColor: string, extraConfig: ExtraConfig) => string
     /**
      * This setting allows you specify when section contents (rows of seats, tables, etc) should be shown. Only available on charts with sections. {@link https://docs.seats.io/docs/renderer/config-showsectioncontents See documentation}
      * @default 'always'
@@ -194,7 +194,7 @@ export interface ChartRendererConfigOptions extends DeprecatedConfigProperties, 
     /**
      * A function that should return true if an object is visible, and false otherwise. When an object is invisible, it can't be selected or interacted with. {@link https://docs.seats.io/docs/renderer/config-isobjectvisible See documentation}
      */
-    isObjectVisible?: (object: SelectableObjectProps, extraConfig: ExtraConfig) => boolean
+    isObjectVisible?: (object: SelectableObject, extraConfig: ExtraConfig) => boolean
     /**
      * Set to true to show seat labels in your chart.
      * @deault false
@@ -397,7 +397,7 @@ export interface EventManagerSelectModeConfigOptions extends BaseEventManagerCon
      * @returns A string with the name of a FontAwesome v4.7.0 icon. {@link https://fontawesome.com/v4.7.0/icons/ See the full list of available icons}.
      * For more details, {@link https://docs.seats.io/docs/event-manager/modes/select#objecticon see the documentation}.
      */
-    objectIcon?: (object: SelectableObjectProps, defaultIcon: string | null, extraConfig?: ExtraConfig) => string
+    objectIcon?: (object: SelectableObject, defaultIcon: string | null, extraConfig?: ExtraConfig) => string
     objectTooltip?: {
         showOrderId?: boolean
         showTechnicalLabel?: boolean
@@ -410,8 +410,8 @@ export interface EventManagerSelectModeConfigOptions extends BaseEventManagerCon
 
 export interface EventManagerStaticModeConfigOptions extends BaseEventManagerConfigOptions, WithEvents {
     mode: 'static'
-    onObjectMouseOver?: (object: SelectableObjectProps) => void
-    onObjectMouseOut?: (object: SelectableObjectProps) => void
+    onObjectMouseOver?: (object: SelectableObject) => void
+    onObjectMouseOut?: (object: SelectableObject) => void
     tooltipContents?: (object: object) => string
 }
 
@@ -755,18 +755,18 @@ export type ChartRendererCallbacks = {
     onFloorChanged?: (floor?: Floor) => void
     onFullScreenClosed?: () => void
     onFullScreenOpened?: () => void
-    onHoldFailed?: (objects: BookableObjectProps[], ticketTypes: TicketTypeJson[]) => void
-    onHoldSucceeded?: (objects: BookableObjectProps[], ticketTypes: TicketTypeJson[]) => void
+    onHoldFailed?: (objects: BookableObject[], ticketTypes: TicketTypeJson[]) => void
+    onHoldSucceeded?: (objects: BookableObject[], ticketTypes: TicketTypeJson[]) => void
     onHoldTokenExpired?: () => void
-    onObjectClicked?: (object: SelectableObjectProps) => void
-    onObjectDeselected?: (object: BookableObjectProps, selectedTicketType: TicketTypeJson) => void
-    onObjectMouseOut?: (object: SelectableObjectProps) => void
-    onObjectMouseOver?: (object: SelectableObjectProps) => void
-    onObjectSelected?: (object: SelectableObjectProps, selectedTicketType: TicketTypeJson) => void
-    onObjectStatusChanged?: (object: BookableObjectProps) => void
-    onReleaseHoldFailed?: (objects: BookableObjectProps[], ticketTypes: TicketTypeJson[]) => void
-    onReleaseHoldSucceeded?: (objects: BookableObjectProps[], ticketTypes: TicketTypeJson[]) => void
-    onSelectedObjectBooked?: (object: BookableObjectProps) => void
+    onObjectClicked?: (object: SelectableObject) => void
+    onObjectMouseOut?: (object: SelectableObject) => void
+    onObjectMouseOver?: (object: SelectableObject) => void
+    onObjectSelected?: (object: SelectableObject, selectedTicketType: TicketTypeJson) => void
+    onObjectDeselected?: (object: SelectableObject, selectedTicketType: TicketTypeJson) => void
+    onObjectStatusChanged?: (object: BookableObject) => void
+    onReleaseHoldFailed?: (objects: BookableObject[], ticketTypes: TicketTypeJson[]) => void
+    onReleaseHoldSucceeded?: (objects: BookableObject[], ticketTypes: TicketTypeJson[]) => void
+    onSelectedObjectBooked?: (object: BookableObject) => void
     onSelectionInvalid?: (violations: string[]) => void
     onSelectionValid?: () => void
     onSessionInitialized?: (holdToken: HoldToken) => void
@@ -1135,18 +1135,18 @@ interface Labels {
 
 export type PriceType = number | string
 
-export interface InteractiveObjectProps {
+export interface InteractiveObject {
     readonly label: string
     readonly labels: Labels
 }
 
-export interface NonBookableTableProps extends InteractiveObjectProps {
-    readonly seats: SeatProps[]
+export interface NonBookableTable extends InteractiveObject {
+    readonly seats: Seat[]
     readonly center: { x: number; y: number }
     readonly category?: CategoryToJSON
 }
 
-export interface NonBookableTableSeatProps extends InteractiveObjectProps {
+export interface NonBookableTableSeat extends InteractiveObject {
     readonly center: { x: number; y: number }
     readonly restrictedView: boolean
     readonly companionSeat: boolean
@@ -1154,7 +1154,7 @@ export interface NonBookableTableSeatProps extends InteractiveObjectProps {
     readonly parent: { type: 'row' | 'table' }
 }
 
-export interface SelectableObjectProps extends InteractiveObjectProps {
+export interface AbstractSelectableObject extends InteractiveObject {
     readonly objectType: string
     readonly selected: boolean
     readonly selectedTicketType: string | undefined
@@ -1170,8 +1170,8 @@ export interface SelectableObjectProps extends InteractiveObjectProps {
     deselect: (ticketType?: string) => Promise<void>
 }
 
-export interface SectionProps extends InteractiveObjectProps {
-    readonly objectType: string
+export interface Section extends InteractiveObject {
+    readonly objectType: 'section'
     readonly numberOfSelectableObjects: number
     readonly numberOfSelectedObjects: number
     readonly selectableCategories: CategoryKey[]
@@ -1180,11 +1180,12 @@ export interface SectionProps extends InteractiveObjectProps {
     readonly sectionCategory?: CategoryToJSON
 }
 
-export interface InteractiveSectionProps extends SelectableObjectProps {
+export interface InteractiveSection extends AbstractSelectableObject {
+    readonly objectType: 'section'
     readonly ticketListing: ListingBySection
 }
 
-export interface BookableObjectProps extends SelectableObjectProps {
+export interface AbstractBookableObject extends AbstractSelectableObject {
     /**
      * Set to one of the predefined values `free`, `reservedByToken`, `booked` or use a custom status.
      */
@@ -1204,7 +1205,8 @@ export interface BookableObjectProps extends SelectableObjectProps {
     channel?: Channel
 }
 
-export interface SeatProps extends BookableObjectProps {
+export interface Seat extends AbstractBookableObject {
+    readonly objectType: 'Seat'
     readonly center: { x: number; y: number }
     readonly isOrphan: boolean
     readonly viewFromSeatUrl?: string
@@ -1214,16 +1216,18 @@ export interface SeatProps extends BookableObjectProps {
     unpulse: () => Promise<void>
 }
 
-export interface BoothProps extends BookableObjectProps {
+export interface Booth extends AbstractBookableObject {
     readonly objectType: 'Booth'
 }
 
-export interface TableProps extends BookableObjectProps {
-    readonly seats: NonBookableTableSeatProps[]
+export interface Table extends AbstractBookableObject {
+    readonly objectType: 'Table'
+    readonly seats: NonBookableTableSeat[]
     readonly center: { x: number; y: number }
 }
 
-export interface GeneralAdmissionAreaProps extends BookableObjectProps {
+export interface GeneralAdmissionArea extends AbstractBookableObject {
+    readonly objectType: 'GeneralAdmissionArea'
     readonly numBooked: number
     readonly capacity: number
     readonly numFree: number
@@ -1235,17 +1239,20 @@ export interface GeneralAdmissionAreaProps extends BookableObjectProps {
     readonly bookAsAWhole: boolean
 }
 
+export type BookableObject = Seat | GeneralAdmissionArea | Booth | Table
+export type SelectableObject = BookableObject | InteractiveSection
+
 export interface SeatingChart {
     changeConfig: (config: ConfigChange) => Promise<void>
     clearSelection: () => Promise<void>
     deselectCategories: (categoryIds: string[]) => Promise<void>
     deselectObjects: (objects: (string | Selection)[]) => Promise<void>
     destroy: () => void
-    findObject: <T extends SelectableObjectProps>(label: string) => Promise<T>
+    findObject: (label: string) => Promise<SelectableObject>
     getReportBySelectability: () => Promise<Object>
     holdToken: string
     listCategories: () => Promise<Category[]>
-    listSelectedObjects: <T extends SelectableObjectProps>() => Promise<T[]>
+    listSelectedObjects: () => Promise<SelectableObject[]>
     render: () => SeatingChart
     rerender: () => void
     resetView: () => Promise<void>
@@ -1256,7 +1263,7 @@ export interface SeatingChart {
     unpulse: (objects: string []) => Promise<void>
     startNewSession: () => Promise<void>
     zoomToFilteredCategories: () => Promise<void>
-    zoomToSection: (label: string) => SectionProps[],
+    zoomToSection: (label: string) => Section[],
     zoomToObjects: (labels: string[]) => Promise<void>
     zoomToSelectedObjects: () => Promise<void>
 }
