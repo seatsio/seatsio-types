@@ -1,4 +1,14 @@
-import { ChartDesignerConfigOptions, ChartRendererConfigOptions, EventManagerConfigOptions, EventManagerFilterSectionsModeConfigOptions, EventManagerManageCategoriesModeConfigOptions, EventManagerManageChannelsModeConfigOptions, EventManagerManageObjectStatusesModeConfigOptions, EventManagerSelectModeConfigOptions, EventManagerStaticModeConfigOptions } from './index'
+import {
+    ChartDesignerConfigOptions,
+    ChartRendererConfigOptions,
+    EventManagerConfigOptions,
+    EventManagerFilterSectionsModeConfigOptions,
+    EventManagerManageCategoriesModeConfigOptions,
+    EventManagerManageChannelsModeConfigOptions,
+    EventManagerManageObjectStatusesModeConfigOptions,
+    EventManagerSelectModeConfigOptions,
+    EventManagerStaticModeConfigOptions
+} from './index'
 
 // Set up a complete Chart Renderer config
 const fullChartRendererConfig: Required<ChartRendererConfigOptions> = {
@@ -84,7 +94,12 @@ const fullChartRendererConfig: Required<ChartRendererConfigOptions> = {
     channels: ['0ef73fd9-693c-5073-98ac-d1dd8cd86536', 'NO_CHANNEL'],
     objectColor: (_object, _defaultColor, _extraConfig) => 'red',
     sectionColor: (_object, _defaultColor, _extraConfig) => 'blue',
-    objectLabel: (object, _defaultLabel, _extraConfig) => `Object label is ${object.label}`,
+    objectLabel: (object, _defaultLabel, _extraConfig) => {
+        if(object.objectType === 'Seat') {
+            return 'I\'m a seat. My parent is a ' + object.parent.type
+        }
+        return `Object label is ${object.label}`
+    },
     objectIcon: (_object, _defaultIcon, _extraConfig) => 'circle',
     showSectionContents: 'onlyAfterZoom',
     isObjectVisible: (_object, _extraConfig) => true,
