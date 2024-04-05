@@ -322,7 +322,32 @@ const chartDesignerConfigNormalMode: Required<ChartDesignerConfigOptions> = {
     onDesignerRenderingFailed: designer => { designer.destroy() }
 }
 
-// Set up a complete Chart Designer config - normal mode
+
+// Set up a complete Chart Designer config - readOnly mode
+const chartDesignerConfigReadOnlyMode: Required<ChartDesignerConfigOptions> = {
+    secretKey: 'mySecretKey',
+    divId: 'chartContainer',
+    container: document.body,
+    chartKey: 'myChartKey',
+    language: 'en',
+    features: {
+        disabled: ['areas', 'backgroundImage'],
+        readOnly: ['categoryList', 'chartName']
+    },
+    mode: 'readOnly',
+    openDraftDrawing: true,
+    openLatestDrawing: true,
+    canvasColorScheme: 'auto',
+    // Callbacks
+    onChartCreated: _chartKey => {},
+    onChartUpdated: _chartKey => {},
+    onChartPublished: _chartKey => {},
+    onExitRequested: () => {},
+    onDesignerRendered: _designer => {},
+    onDesignerRenderingFailed: designer => { designer.destroy() }
+}
+
+// Set up a complete Chart Designer config - safe mode
 const chartDesignerConfigSafeMode: Required<ChartDesignerConfigOptions> = {
     secretKey: 'mySecretKey',
     divId: 'chartContainer',
