@@ -424,7 +424,12 @@ export type EventManagerConfigOptions =
     | EventManagerStaticModeConfigOptions
     | (BaseEventManagerConfigOptions & WithEvent)
 
-export interface ChartDesignerConfigOptions {
+export type ChartDesignerConfigOptions =
+    | ChartDesignerNormalModeConfigOptions
+    | ChartDesignerReadOnlyModeConfigOptions
+    | ChartDesignerSafeModeConfigOptions
+
+export interface BaseChartDesignerConfigOptions {
     canvasColorScheme?: 'auto' | 'light' | 'dark'
     chartKey?: string
     container?: Element
@@ -436,12 +441,11 @@ export interface ChartDesignerConfigOptions {
         disabled?: (keyof ChartDesignerFeatures)[]
         enabled?: (keyof ChartDesignerFeatures)[]
         readOnly?: ('chartName' | 'categoryList')[]
-    },
+    }
     /**
      * Documentation: {@link https://docs.seats.io/docs/embedded-designer/configuration-language}
      */
     language?: 'de' | 'en' | 'es' | 'fr' | 'pt'
-    mode?: 'normal' | 'safe' | 'readOnly',
     onChartCreated?: (chartKey: string) => void
     onChartPublished?: (chartKey: string) => void
     onChartUpdated?: (chartKey: string) => void
@@ -451,6 +455,21 @@ export interface ChartDesignerConfigOptions {
     openDraftDrawing?: boolean
     openLatestDrawing?: boolean
     secretKey: string
+}
+
+export interface ChartDesignerNormalModeConfigOptions extends BaseChartDesignerConfigOptions {
+    mode?: 'normal'
+}
+
+export interface ChartDesignerReadOnlyModeConfigOptions extends BaseChartDesignerConfigOptions {
+    mode: 'readOnly'
+}
+
+export interface ChartDesignerSafeModeConfigOptions extends BaseChartDesignerConfigOptions{
+    mode: 'safe',
+    safeModeOptions?: {
+        allowDeletingObjects?: boolean
+    }
 }
 
 export interface ChartDesignerFeatures {
