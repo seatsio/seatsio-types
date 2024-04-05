@@ -424,7 +424,11 @@ export type EventManagerConfigOptions =
     | EventManagerStaticModeConfigOptions
     | (BaseEventManagerConfigOptions & WithEvent)
 
-export interface ChartDesignerConfigOptions {
+export type ChartDesignerConfigOptions =
+    | ChartDesignerNonSafeModeConfigOptions
+    | ChartDesignerSafeModeConfigOptions
+
+export interface ChartDesignerNonSafeModeConfigOptions {
     canvasColorScheme?: 'auto' | 'light' | 'dark'
     chartKey?: string
     container?: Element
@@ -442,6 +446,38 @@ export interface ChartDesignerConfigOptions {
      */
     language?: 'de' | 'en' | 'es' | 'fr' | 'pt'
     mode?: 'normal' | 'safe' | 'readOnly',
+    onChartCreated?: (chartKey: string) => void
+    onChartPublished?: (chartKey: string) => void
+    onChartUpdated?: (chartKey: string) => void
+    onDesignerRendered?: (designer: ChartDesigner) => void
+    onDesignerRenderingFailed?: (designer: ChartDesigner) => void
+    onExitRequested?: () => void
+    openDraftDrawing?: boolean
+    openLatestDrawing?: boolean
+    secretKey: string
+}
+
+export interface ChartDesignerSafeModeConfigOptions {
+    canvasColorScheme?: 'auto' | 'light' | 'dark'
+    chartKey?: string
+    container?: Element
+    divId?: string
+    /**
+     * Documentation: {@link https://docs.seats.io/docs/embedded-designer/configuration-features}
+     */
+    features?: {
+        disabled?: (keyof ChartDesignerFeatures)[]
+        enabled?: (keyof ChartDesignerFeatures)[]
+        readOnly?: ('chartName' | 'categoryList')[]
+    },
+    /**
+     * Documentation: {@link https://docs.seats.io/docs/embedded-designer/configuration-language}
+     */
+    language?: 'de' | 'en' | 'es' | 'fr' | 'pt'
+    mode: 'safe',
+    safeModeOptions?: {
+        allowDeletingObjects?: boolean
+    }
     onChartCreated?: (chartKey: string) => void
     onChartPublished?: (chartKey: string) => void
     onChartUpdated?: (chartKey: string) => void
