@@ -429,7 +429,10 @@ export type ChartDesignerConfigOptions =
     | ChartDesignerReadOnlyModeConfigOptions
     | ChartDesignerSafeModeConfigOptions
 
+export type ChartDesignerMode = 'normal' | 'readOnly' | 'safe'
+
 export interface BaseChartDesignerConfigOptions {
+    mode?: ChartDesignerMode
     canvasColorScheme?: 'auto' | 'light' | 'dark'
     chartKey?: string
     container?: Element
