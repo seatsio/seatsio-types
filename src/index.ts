@@ -384,6 +384,7 @@ export interface EventManagerSelectModeConfigOptions extends BaseEventManagerCon
     mode: 'select'
     maxSelectedObjects?: SelectionLimiter
     numberOfPlacesToSelect?: number
+    isObjectSelectable?: (object: SelectableObject) => boolean
     selectedObjects?: (string | SelectedObject | SelectedGA)[]
     selectionBy?: 'places' | 'objects'
     ticketTypes?: TicketTypeJsonWithoutPrice[]

@@ -295,7 +295,8 @@ const eventManagerSelectModeConfig: Required<EventManagerSelectModeConfigOptions
         showCategory: true,
         showChannel: true,
         showActionHint: true
-    }
+    },
+    isObjectSelectable: (_object) => true
 }
 
 // Set up a complete Chart Designer config - normal mode
