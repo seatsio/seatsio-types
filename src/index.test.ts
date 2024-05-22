@@ -361,7 +361,8 @@ const chartDesignerConfigSafeMode: Required<ChartDesignerConfigOptions> = {
     },
     mode: 'safe',
     safeModeOptions: {
-        allowDeletingObjects: true
+        allowDeletingObjects: true,
+        allowEditingAreaCapacity: true
     },
     openDraftDrawing: true,
     openLatestDrawing: true,
