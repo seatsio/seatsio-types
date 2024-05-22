@@ -468,7 +468,8 @@ export interface ChartDesignerReadOnlyModeConfigOptions extends BaseChartDesigne
 export interface ChartDesignerSafeModeConfigOptions extends BaseChartDesignerConfigOptions{
     mode: 'safe',
     safeModeOptions?: {
-        allowDeletingObjects?: boolean
+        allowDeletingObjects?: boolean,
+        allowEditingAreaCapacity?: boolean
     }
 }
 
