@@ -7,7 +7,7 @@ import {
     EventManagerManageChannelsModeConfigOptions,
     EventManagerManageObjectStatusesModeConfigOptions,
     EventManagerSelectModeConfigOptions,
-    EventManagerStaticModeConfigOptions, PlacesPromptParameters
+    EventManagerStaticModeConfigOptions
 } from './index'
 
 // Set up a complete Chart Renderer config
