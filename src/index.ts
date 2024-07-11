@@ -42,6 +42,26 @@ export interface WithEvent {
     event: string
 }
 
+export interface PlacesPromptParameters {
+    selectedPlaces: number,
+    minPlaces: number,
+    maxPlaces: number,
+    objectToSelect: SelectableObject
+}
+
+export interface TicketTypePromptParameters {
+    ticketTypes: TicketType[],
+    objectToSelect: SelectableObject
+}
+
+export interface PlacesWithTicketTypesPromptParameters {
+    ticketTypes: TicketType[],
+    selectedPlacesByTicketType: Dict<number>,
+    minPlaces: number,
+    maxPlaces: number,
+    objectsToSelect: SelectableObject[]
+}
+
 type Session = 'continue' | 'manual' | 'none' | 'start'
 
 export interface ChartRendererConfigOptions extends DeprecatedConfigProperties, CommonConfigOptions, ChartRendererCallbacks {
@@ -289,6 +309,19 @@ export interface ChartRendererConfigOptions extends DeprecatedConfigProperties, 
      * You cannot supply an empty array: the channels array needs to be either undefined, or an array of at least one element.
      */
     channels?: string[]
+
+    /**
+     * Called when the chart needs to prompt how many places to select. {@link https://docs.seats.io/docs/renderer/prompts-api/onPlacesPrompt See documentation}
+     */
+    onPlacesPrompt?: (parameters: PlacesPromptParameters, confirmSelection: (places: number) => void) => void
+    /**
+     * Called when the chart needs to prompt which ticket type to select. {@link https://docs.seats.io/docs/renderer/prompts-api/onTicketTypePrompt See documentation}
+     */
+    onTicketTypePrompt?: (parameters: TicketTypePromptParameters, confirmSelection: (ticketType: string) => void) => void
+    /**
+     * Called when the chart needs to prompt how many places to select for each ticket type. {@link https://docs.seats.io/docs/renderer/prompts-api/onPlacesWithTicketTypesPrompt See documentation}
+     */
+    onPlacesWithTicketTypesPrompt?: (parameters: PlacesWithTicketTypesPromptParameters, confirmSelection: (placesPerTicketType: Dict<number> | string[]) => void) => void
 }
 
 export type ExtractedEventManagerProps = Pick<ChartRendererConfigOptions,
