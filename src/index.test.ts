@@ -159,6 +159,16 @@ const fullChartRendererConfig: Required<ChartRendererConfigOptions> = {
     onSelectionInvalid: () => {},
     onFilteredCategoriesChanged: _categories => {},
     onFloorChanged: _floor => {},
+    onPlacesPrompt: (parameters, confirmSelection) => {
+        confirmSelection(parameters.minPlaces)
+    },
+    onTicketTypePrompt: (parameters, confirmSelection) => {
+        confirmSelection(parameters.ticketTypes[0].ticketType)
+    },
+    onPlacesWithTicketTypesPrompt: (parameters, confirmSelection) => {
+        confirmSelection([parameters.ticketTypes[0].ticketType, parameters.ticketTypes[1].ticketType])
+        confirmSelection({'adult': 10})
+    },
     unifiedObjectPropertiesInCallbacks: true,
     // Deprecated
     allowOrphanSeats: false,
