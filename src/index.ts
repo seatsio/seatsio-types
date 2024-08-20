@@ -1096,12 +1096,27 @@ export type SimplePricing = {
     category: CategoryKey
     originalPrice?: number
     price: number
+    channels?: ChannelPricing[]
 }
 
 export type MultiLevelPricing = {
     category: number | string,
     ticketTypes: TicketType[]
 }
+
+export type ChannelPricing = (SimpleChannelPricing | MultiLevelChannelPricing)
+
+export type SimpleChannelPricing = {
+    channel: string
+    originalPrice?: number
+    price: number
+}
+
+export type MultiLevelChannelPricing = {
+    channel: string
+    ticketTypes: TicketType[]
+}
+
 
 export type TicketType = {
     ticketType: string
