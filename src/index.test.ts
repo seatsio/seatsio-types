@@ -26,7 +26,18 @@ const fullChartRendererConfig: Required<ChartRendererConfigOptions> = {
             { ticketType: 'adult', price: 30, label: 'Adults' },
             { ticketType: 'child', price: 20, label: 'Children' },
             { ticketType: 'senior', price: 25, label: 'Senior', description: '65+ – Requires ID' }
-        ]}
+        ], channels: [
+                { channel: 'channel1', price: 30},
+            ]},
+        { category: 'C', price: 10, channels: [
+                { channel: 'channel1', price: 30},
+                { channel: 'channel2', originalPrice: 40, price: 50},
+                { channel: 'channel3', ticketTypes: [
+                    { ticketType: 'adult', price: 60 },
+                    { ticketType: 'child', price: 70, label: 'Children' }
+                ]}
+            ]
+        }
     ],
     priceFormatter: price => '$' + price,
     showSectionPricingOverlay: true,
