@@ -51,7 +51,7 @@ const fullChartRendererConfig: Required<ChartRendererConfigOptions> = {
             amount: 4
         },
     ],
-    selectableObjects: ['A-1', 'A-2'],
+    selectableObjects: ['A-1', 'A-2', { label: 'GA', amount: 4 }],
     selectionValidators: [
         { type: 'minimumSelectedPlaces', minimum: 4 },
         { type: 'consecutiveSeats' },

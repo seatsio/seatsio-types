@@ -117,7 +117,7 @@ export interface ChartRendererConfigOptions extends DeprecatedConfigProperties, 
     /**
      * Render the chart with the specified objects selectable. {@link https://docs.seats.io/docs/renderer/selectableobjects See documentation}
      */
-    selectableObjects?: string[]
+    selectableObjects?: (string | SelectableGA)[]
     /**
      * Selection validators run every time a seat is selected or deselected. They check whether there are no orphan seats, and/or whether all selected seats are consecutive (meaning: next to each other and in the same category). {@link https://docs.seats.io/docs/renderer/config-selectionvalidators See documentation}
      */
