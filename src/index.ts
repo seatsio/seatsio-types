@@ -1155,6 +1155,16 @@ export interface SelectedObject {
 }
 
 export interface SelectedGA {
+    label?: string
+    objectUuidOrLabel?: string
+    ticketType?: string | null
+    amount?: number
+    object?: InteractiveObject
+    id?: string
+    objectId?: string
+}
+
+export interface SelectableGA {
     label: string
     amount: number
 }
