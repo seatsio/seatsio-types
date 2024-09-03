@@ -113,11 +113,11 @@ export interface ChartRendererConfigOptions extends DeprecatedConfigProperties, 
     /**
      * Render the chart with the specified objects selected (if they are still free). {@link https://docs.seats.io/docs/renderer/config-selectedobjects See documentation}
      */
-    selectedObjects?: (string | SelectedObject | SelectedGA)[]
+    selectedObjects?: (string | SelectedAmount)[]
     /**
      * Render the chart with the specified objects selectable. {@link https://docs.seats.io/docs/renderer/selectableobjects See documentation}
      */
-    selectableObjects?: (string | SelectableGA)[]
+    selectableObjects?: (string | SelectableAmount)[]
     /**
      * Selection validators run every time a seat is selected or deselected. They check whether there are no orphan seats, and/or whether all selected seats are consecutive (meaning: next to each other and in the same category). {@link https://docs.seats.io/docs/renderer/config-selectionvalidators See documentation}
      */
@@ -418,7 +418,7 @@ export interface EventManagerSelectModeConfigOptions extends BaseEventManagerCon
     maxSelectedObjects?: SelectionLimiter
     numberOfPlacesToSelect?: number
     isObjectSelectable?: (object: SelectableObject) => boolean
-    selectedObjects?: (string | SelectedObject | SelectedGA)[]
+    selectedObjects?: (string | SelectedAmount)[]
     selectionBy?: 'places' | 'objects'
     ticketTypes?: TicketTypeJsonWithoutPrice[]
     tooltipContents?: (object: object) => string
@@ -1149,22 +1149,7 @@ interface SelectionValidatorMinimumSelectedPlaces {
     minimum: number
 }
 
-export interface SelectedObject {
-    label: string
-    ticketType: string
-}
-
-export interface SelectedGA {
-    label?: string
-    objectUuidOrLabel?: string
-    ticketType?: string | null
-    amount?: number
-    object?: InteractiveObject
-    id?: string
-    objectId?: string
-}
-
-export interface SelectableGA {
+export interface SelectableAmount {
     label: string
     amount: number
 }
@@ -1329,7 +1314,7 @@ export interface SeatingChart {
     changeConfig: (config: ConfigChange) => Promise<void>
     clearSelection: () => Promise<void>
     deselectCategories: (categoryIds: string[]) => Promise<void>
-    deselectObjects: (objects: (string | Selection)[]) => Promise<void>
+    deselectObjects: (objects: (string | SelectedAmount)[]) => Promise<void>
     destroy: () => void
     findObject: (label: string) => Promise<SelectableObject>
     getReportBySelectability: () => Promise<Object>
@@ -1341,7 +1326,7 @@ export interface SeatingChart {
     resetView: () => Promise<void>
     selectCategories: (categoryIds: string[]) => Promise<void>
     selectedObjects: string[]
-    selectObjects: (objects: (string | Selection)[]) => Promise<void>
+    selectObjects: (objects: (string | SelectedAmount)[]) => Promise<void>
     pulse: (objects: string []) => Promise<void>
     unpulse: (objects: string []) => Promise<void>
     startNewSession: () => Promise<void>
@@ -1384,8 +1369,8 @@ export interface Channel {
     index: number
 }
 
-export type Selection = {
-    id: string
+export type SelectedAmount = {
+    label: string
     ticketType?: string
     amount?: number
 }

@@ -434,8 +434,8 @@ new seatsio.SeatingChartDesigner({
 })
 
 // Seating chart tests
-seatingChart.selectObjects(['A1', { id: 'someId', ticketType: 'aTicketType', amount: 2}])
-seatingChart.deselectObjects(['A1', { id: 'someId', ticketType: 'aTicketType', amount: 2}])
+seatingChart.selectObjects(['A1', { label: 'someLabel', ticketType: 'aTicketType', amount: 2 }, { label: 'anotherLabel', amount: 2 }])
+seatingChart.deselectObjects(['A1', { label: 'someLabel', ticketType: 'aTicketType', amount: 2 }])
 
 seatingChart.listSelectedObjects().then(objects => {
     objects.forEach(obj => {
