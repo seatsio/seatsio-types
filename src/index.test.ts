@@ -37,6 +37,13 @@ const fullChartRendererConfig: Required<ChartRendererConfigOptions> = {
                     { ticketType: 'child', price: 70, label: 'Children' }
                 ]}
             ]
+        },
+        { objects: ['A-1', 'A-2'], price: 10 },
+        { objects: ['B-1'], ticketTypes: [
+                { ticketType: 'adult', price: 30, label: 'Adults' },
+                { ticketType: 'child', price: 20, label: 'Children' },
+                { ticketType: 'senior', price: 25, label: 'Senior', description: '65+ – Requires ID' }
+            ]
         }
     ],
     priceFormatter: price => '$' + price,
