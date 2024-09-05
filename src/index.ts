@@ -1099,8 +1099,20 @@ export type SimplePricing = {
     channels?: ChannelPricing[]
 }
 
+export type SimplePricingForObjects = {
+    objects: string[]
+    originalPrice?: number
+    price: number
+    channels?: ChannelPricing[]
+}
+
 export type MultiLevelPricing = {
-    category: number | string,
+    category: CategoryKey,
+    ticketTypes: TicketType[]
+}
+
+export type MultiLevelPricingForObjects = {
+    objects: string[]
     ticketTypes: TicketType[]
 }
 
@@ -1126,7 +1138,11 @@ export type TicketType = {
     description?: string
 }
 
-export type Pricing = (SimplePricing | MultiLevelPricing)[]
+export type PricingForCategory = (SimplePricing | MultiLevelPricing)
+
+export type PricingForObjects = (SimplePricingForObjects | MultiLevelPricingForObjects)
+
+export type Pricing = (PricingForCategory | PricingForObjects)[]
 
 export type SelectionValidator =
     SelectionValidatorNoOrphanSeats
