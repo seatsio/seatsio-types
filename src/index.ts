@@ -1092,7 +1092,7 @@ export type EventManagerMode =
     | 'select'
     | 'static'
 
-export type SimplePricingForCategory = {
+export type SimplePricing = {
     category: CategoryKey
     originalPrice?: number
     price: number
@@ -1106,7 +1106,7 @@ export type SimplePricingForObjects = {
     channels?: ChannelPricing[]
 }
 
-export type MultiLevelPricingForCategory = {
+export type MultiLevelPricing = {
     category: CategoryKey,
     ticketTypes: TicketType[]
 }
@@ -1138,7 +1138,7 @@ export type TicketType = {
     description?: string
 }
 
-export type PricingForCategory = (SimplePricingForCategory | MultiLevelPricingForCategory)
+export type PricingForCategory = (SimplePricing | MultiLevelPricing)
 
 export type PricingForObjects = (SimplePricingForObjects | MultiLevelPricingForObjects)
 
