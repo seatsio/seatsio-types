@@ -1277,6 +1277,7 @@ export interface AbstractBookableObject extends AbstractSelectableObject {
     readonly forSale: boolean
     readonly dataPerEvent: Dict<object>
     readonly seasonStatusOverriddenQuantity: number
+    readonly entrance: string | null
 
     // renderer properties
     inSelectableChannel?: boolean
@@ -1319,7 +1320,6 @@ export interface GeneralAdmissionArea extends AbstractBookableObject {
     readonly selectionPerTicketType: Dict<number>
     readonly holds: Dict<Dict<number>>
     readonly dataPerEvent: Dict<object>
-    readonly entrance: string | null
     readonly bookAsAWhole: boolean
 }
 
