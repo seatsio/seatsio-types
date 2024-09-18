@@ -873,7 +873,7 @@ export type Floor = {
 export type Category = {
     accessible: boolean
     color: string
-    key: number
+    key: CategoryKey
     label: string
     pricing: { price: number, formattedPrice: string },
     hasSelectableObjects: boolean
