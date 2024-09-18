@@ -184,15 +184,15 @@ export interface ChartRendererConfigOptions extends DeprecatedConfigProperties, 
      */
     categoryFilter?: CategoryFilter
     /**
-     * Makes the specified categories available from selection, while making all others unavailable from selection. The array can be a list of category IDs or labels.
+     * Makes the specified categories available from selection, while making all others unavailable from selection. The array can be a list of category keys or labels.
      */
     availableCategories?: CategoryKey[]
     /**
-     * Makes the specified categories unavailable from selection. The array can be a list of category IDs or labels.
+     * Makes the specified categories unavailable from selection. The array can be a list of category keys or labels.
      */
     unavailableCategories?: CategoryKey[]
     /**
-     * Leaves the specified categories normally visible, while making all others dimmed out. The array can be a list of category IDs or labels.
+     * Leaves the specified categories normally visible, while making all others dimmed out. The array can be a list of category keys or labels.
      */
     filteredCategories?: CategoryKey[]
     objectColor?: (object: SelectableObject, defaultColor: string, extraConfig: ExtraConfig) => string
@@ -915,7 +915,7 @@ export type CategoryLimiter = {
 }
 
 export type CategoryAndTicketLimiter = {
-    category: string
+    category: CategoryKey
     ticketTypes: TicketTypeLimiter[]
 }
 
@@ -1329,7 +1329,7 @@ export type SelectableObject = BookableObject | InteractiveSection
 export interface SeatingChart {
     changeConfig: (config: ConfigChange) => Promise<void>
     clearSelection: () => Promise<void>
-    deselectCategories: (categoryIds: string[]) => Promise<void>
+    deselectCategories: (categories: CategoryKey[]) => Promise<void>
     deselectObjects: (objects: (string | SelectedAmount)[]) => Promise<void>
     destroy: () => void
     findObject: (label: string) => Promise<SelectableObject>
@@ -1340,7 +1340,7 @@ export interface SeatingChart {
     render: () => SeatingChart
     rerender: () => void
     resetView: () => Promise<void>
-    selectCategories: (categoryIds: string[]) => Promise<void>
+    selectCategories: (categories: CategoryKey[]) => Promise<void>
     selectedObjects: string[]
     selectObjects: (objects: (string | SelectedAmount)[]) => Promise<void>
     pulse: (objects: string []) => Promise<void>
