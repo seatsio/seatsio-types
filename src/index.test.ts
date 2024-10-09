@@ -201,7 +201,8 @@ const fullChartRendererConfig: Required<ChartRendererConfigOptions> = {
     showRowLines: false,
     themeColors: 'someTheme',
     themePreset: 'somePreset',
-    tooltipStyle: 'someStyle'
+    tooltipStyle: 'someStyle',
+    hideSectionsNotForSale: false
 }
 
 // Set up a complete Event Manager config
