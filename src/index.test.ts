@@ -442,7 +442,8 @@ new seatsio.SeatingChartDesigner({
 })
 
 // Seating chart tests
-seatingChart.selectObjects(['A1', { label: 'someLabel', ticketType: 'aTicketType', amount: 2 }, { label: 'anotherLabel', amount: 2 }])
+seatingChart.doSelectObjects(['A1', { label: 'someLabel', ticketType: 'aTicketType', amount: 2 }, { label: 'anotherLabel', amount: 2 }])
+seatingChart.trySelectObjects(['A1', { label: 'someLabel', ticketType: 'aTicketType', amount: 2 }, { label: 'anotherLabel', amount: 2 }])
 seatingChart.deselectObjects(['A1', { label: 'someLabel', ticketType: 'aTicketType', amount: 2 }])
 
 seatingChart.listSelectedObjects().then(objects => {
