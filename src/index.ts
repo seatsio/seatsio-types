@@ -1346,7 +1346,8 @@ export interface SeatingChart {
     resetView: () => Promise<void>
     selectCategories: (categories: CategoryKey[]) => Promise<void>
     selectedObjects: string[]
-    selectObjects: (objects: (string | SelectedAmount)[]) => Promise<void>
+    doSelectObjects: (objects: (string | SelectedAmount)[]) => Promise<void>
+    trySelectObjects: (objects: (string | SelectedAmount)[]) => Promise<void>
     pulse: (objects: string []) => Promise<void>
     unpulse: (objects: string []) => Promise<void>
     startNewSession: () => Promise<void>
@@ -1369,7 +1370,8 @@ export interface EventManager extends Pick<SeatingChart,
     | 'rerender'
     | 'resetView'
     | 'selectCategories'
-    | 'selectObjects'
+    | 'trySelectObjects'
+    | 'doSelectObjects'
     | 'zoomToObjects'
     | 'zoomToSection'
     | 'zoomToSelectedObjects'
