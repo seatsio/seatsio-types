@@ -8,7 +8,7 @@ name: 'Release'
 on:
   workflow_dispatch:
     inputs:
-      version:
+      versionToBump:
         description: 'Bump version or release current version without changing package.json. Major for incompatible API changes, minor for adding backwards compatible features, patch for bugfixes.'
         required: true
         default: 'minor'
