@@ -1132,7 +1132,7 @@ export type DeprecatedConfigProperties = {
      */
     orphanSeats?: string
     /**
-     * @deprecated Use `tooltipInfo` instead. Read more at {@link https://docs.seats.io/docs/renderer-config-tooltipinfo}
+     * @deprecated Use `popoverInfo` instead.
      */
     customTooltipText?: boolean
     /**
