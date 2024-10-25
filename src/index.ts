@@ -927,11 +927,25 @@ export type StyleOverride = {
     cornerRadius?: 'round' | 'square'
     buttonShape?: 'round' | 'square'
 
-    // Deprecated:
+    /**
+     * @deprecated
+     */
     fontWeight?: 'bolder' | 'minMax'
+    /**
+     * @deprecated
+     */
     borderRadius?: 'none' | 'max' | 'asymmetrical'
+    /**
+     * @deprecated
+     */
     border?: '3d' | 'thick'
+    /**
+     * @deprecated
+     */
     padding?: 'spacious'
+    /**
+     * @deprecated
+     */
     buttonFace: 'fillEnabled' | 'fillHighlightedOption'
 }
 
