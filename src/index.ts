@@ -85,7 +85,7 @@ export interface ChartRendererConfigOptions extends DeprecatedConfigProperties, 
     mode?: ChartRendererMode
     /**
      * Allows to toggle on or off some features of the cursor tooltip, displayed when hovering objects when using pointing devices like a mouse, or when tapping on an object on touch devices.
-     * @deprecated
+     * @deprecated Use `objectPopover` instead.
      */
     objectTooltip?: ChartRendererObjectTooltip
     /**
@@ -166,7 +166,7 @@ export interface ChartRendererConfigOptions extends DeprecatedConfigProperties, 
     objectWithoutCategorySelectable?: boolean
     /**
      * A function whose result will be displayed as extra information on the cursor tooltip. {@link https://docs.seats.io/docs/renderer/config-tooltipinfo See documentation}
-     * @deprecated
+     * @deprecated Use `popoverInfo` instead.
      */
     tooltipInfo?: (object: SelectableObject) => string
     /**
@@ -182,13 +182,13 @@ export interface ChartRendererConfigOptions extends DeprecatedConfigProperties, 
     /**
      * On mobile, a view from seat thumbnail is displayed on the top left of the screen. Tapping this image will expand the thumbnail. You can hide this thumbnail on mobile by passing `showViewFromYourSeatOnMobile: false`.
      * @default true
-     * @deprecated
+     * @deprecated Does not have any effect.
      */
     showViewFromYourSeatOnMobile?: boolean
     /**
      * On desktop, a view from seat is displayed inside the tooltip when hovering a seat. You can hide this picture on desktop by passing `showViewFromYourSeatOnDesktop: false`.
      * @default true
-     * @deprecated
+     * @deprecated Does not have any effect.
      */
     showViewFromYourSeatOnDesktop?: boolean
     /**
@@ -292,7 +292,7 @@ export interface ChartRendererConfigOptions extends DeprecatedConfigProperties, 
     }
     /**
      * Sets the preset of styles to use for the seating chart user interface. {@link https://docs.seats.io/docs/renderer/stylepreset See documentation}
-     * @deprecated
+     * @deprecated Does not have any effect.
      */
     stylePreset?: 'balance' | 'bubblegum' | 'flathead' | 'bezels' | 'leaf'
     /**
