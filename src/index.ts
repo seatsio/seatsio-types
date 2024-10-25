@@ -85,8 +85,13 @@ export interface ChartRendererConfigOptions extends DeprecatedConfigProperties, 
     mode?: ChartRendererMode
     /**
      * Allows to toggle on or off some features of the cursor tooltip, displayed when hovering objects when using pointing devices like a mouse, or when tapping on an object on touch devices.
+     * @deprecated
      */
     objectTooltip?: ChartRendererObjectTooltip
+    /**
+     * Allows to toggle on or off some features from the Object Popover, displayed when hovering objects when using pointing devices like a mouse, or when tapping on an object on touch devices.
+     */
+    objectPopover?: ChartRendererObjectPopover
     /**
      * Seats supports two types of pricing: simple pricing and multi-level pricing. {@link https://docs.seats.io/docs/renderer/config-pricing See documentation}
      */
@@ -161,8 +166,13 @@ export interface ChartRendererConfigOptions extends DeprecatedConfigProperties, 
     objectWithoutCategorySelectable?: boolean
     /**
      * A function whose result will be displayed as extra information on the cursor tooltip. {@link https://docs.seats.io/docs/renderer/config-tooltipinfo See documentation}
+     * @deprecated
      */
     tooltipInfo?: (object: SelectableObject) => string
+    /**
+     * A function whose result will be displayed as extra information on the object popover. {@link https://docs.seats.io/docs/renderer/config-popoverInfo See documentation}
+     */
+    popoverInfo?: (object: SelectableObject) => string
     /**
      * On mobile, when displaying a chart with sections, a tooltip is shown at the bottom of the screen with the section name and pricing.
      * You can hide this tooltip on mobile by passing `showActiveSectionTooltipOnMobile: false`.
@@ -172,11 +182,13 @@ export interface ChartRendererConfigOptions extends DeprecatedConfigProperties, 
     /**
      * On mobile, a view from seat thumbnail is displayed on the top left of the screen. Tapping this image will expand the thumbnail. You can hide this thumbnail on mobile by passing `showViewFromYourSeatOnMobile: false`.
      * @default true
+     * @deprecated
      */
     showViewFromYourSeatOnMobile?: boolean
     /**
      * On desktop, a view from seat is displayed inside the tooltip when hovering a seat. You can hide this picture on desktop by passing `showViewFromYourSeatOnDesktop: false`.
      * @default true
+     * @deprecated
      */
     showViewFromYourSeatOnDesktop?: boolean
     /**
@@ -280,6 +292,7 @@ export interface ChartRendererConfigOptions extends DeprecatedConfigProperties, 
     }
     /**
      * Sets the preset of styles to use for the seating chart user interface. {@link https://docs.seats.io/docs/renderer/stylepreset See documentation}
+     * @deprecated
      */
     stylePreset?: 'balance' | 'bubblegum' | 'flathead' | 'bezels' | 'leaf'
     /**
@@ -337,8 +350,9 @@ export type ExtractedEventManagerProps = Pick<ChartRendererConfigOptions,
     | 'showFullScreenButton'
     | 'style'
     | 'stylePreset'
-    | 'tooltipInfo'
+    | 'popoverInfo'
     // Deprecated
+    | 'tooltipInfo'
     | 'themePreset'
     | 'themeColors'
 >
@@ -370,6 +384,18 @@ export interface BaseEventManagerConfigOptions extends CommonConfigOptions, Extr
     objectTooltip?: {
         /**
          * Show the orderId in the tooltip if present.
+         * @default true
+         */
+        showOrderId?: boolean
+        /**
+         * Show the technical label, if one of the label components was overridden via the Displayed Label field in Designer.
+         * @default false
+         */
+        showTechnicalLabel?: boolean
+    },
+    objectPopover?: {
+        /**
+         * Show the orderId in the popover if present.
          * @default true
          */
         showOrderId?: boolean
@@ -443,6 +469,13 @@ export interface EventManagerSelectModeConfigOptions extends BaseEventManagerCon
         showCategory?: boolean
         showChannel?: boolean
         showActionHint?: boolean
+    },
+    objectPopover?: {
+        showOrderId?: boolean
+        showTechnicalLabel?: boolean
+        showLabel?: boolean
+        showCategory?: boolean
+        showChannel?: boolean
     }
 }
 
@@ -890,7 +923,11 @@ export type HoldToken = {
 }
 
 export type StyleOverride = {
-    font?: 'Roboto' | 'Montserrat' | 'WorkSans' | 'NotoSansHK' | 'Lato' | 'NunitoSans'
+    font?: 'Inter' | 'Roboto' | 'Montserrat' | 'WorkSans' | 'NotoSansHK' | 'Lato' | 'NunitoSans'
+    cornerRadius?: 'round' | 'square'
+    buttonShape?: 'round' | 'square'
+
+    // Deprecated:
     fontWeight?: 'bolder' | 'minMax'
     borderRadius?: 'none' | 'max' | 'asymmetrical'
     border?: '3d' | 'thick'
@@ -964,6 +1001,48 @@ export interface ChartRendererObjectTooltip {
      * @default auto
      */
     confirmSelectionOnMobile?: boolean | 'auto'
+}
+
+export interface ChartRendererObjectPopover {
+    /**
+     * If true, the amount of available seats of the section or general admission will be displayed.
+     * @default false
+     */
+    showAvailability?: boolean
+    /**
+     * If true, the object's category color and name will be displayed.
+     * @default true
+     */
+    showCategory?: boolean
+    /**
+     * If true, the section label, row label and/or seat label of the object will be visible. If false, no labeling will be shown.
+     * @default true
+     */
+    showLabel?: boolean
+    /**
+     * If true, the price range of the object's category will be visible.
+     * @default true
+     */
+    showPricing?: boolean
+    /**
+     * If true, a notice will be displayed on the popover if the object is unavailable.
+     * @default true
+     */
+    showUnavailableNotice?: boolean
+    /**
+     * If true, a labels will be displayed in a hierarchy-based styling, improving readability. If false, labels will be displayed as flat text.
+     * @default true
+     */
+    stylizedLabel?: boolean
+    /**
+     * Defines behavior when interacting with objects that don't have ticket types for pointing input devices (typically laptops, desktops) and touch input devices (typically phones, tablets)
+     * - If set to 'always', the popover will show a confirmation prompt when clicking or tapping an object with any kind of input device, instead of selecting them directly.
+     * - If set to 'touch', the popover will show a confirmation prompt when tapping an object on touch input devices, instead of selecting them directly. For pointing input devices it will still show on hover.
+     * - If set to 'never', the popover will only show on hover when using a pointing input device, but not show on touch input devices and instead select objects directly on tap.
+     * - If set to 'auto', it will behave just like 'touch', except that no popover will be shown on touch input devices when tapping on an object if the onObjectClicked parameter is passed in.
+     * @default 'auto'
+     */
+    confirmSelection?: 'auto' | 'always' | 'touch' | 'never'
 }
 
 export type Language =
