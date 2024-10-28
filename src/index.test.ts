@@ -82,17 +82,16 @@ const fullChartRendererConfig: Required<ChartRendererConfigOptions> = {
     selectedObjectsInputName: 'inputName',
     objectWithoutPricingSelectable: true,
     objectWithoutCategorySelectable: true,
-    objectTooltip: {
-        showActionHint: true,
+    objectPopover: {
         showAvailability: false,
         showCategory: true,
         showLabel: true,
         showPricing: true,
         showUnavailableNotice: true,
         stylizedLabel: true,
-        confirmSelectionOnMobile: 'auto'
+        confirmSelection: 'auto'
     },
-    tooltipInfo: object => "[b]This[/b] object's [i]id[/i] is [pre]" + object.label + "[/pre]",
+    popoverInfo: object => "[b]This[/b] object's [i]id[/i] is [pre]" + object.label + "[/pre]",
     showActiveSectionTooltipOnMobile: true,
     showViewFromYourSeatOnMobile: true,
     showViewFromYourSeatOnDesktop: true,
@@ -146,15 +145,21 @@ const fullChartRendererConfig: Required<ChartRendererConfigOptions> = {
     },
     stylePreset: 'bubblegum',
     style: {
+        font: 'Inter',
+        buttonShape: 'round',
+        cornerRadius: 'round',
+
+        // Deprecated:
         border: '3d',
         borderRadius: 'asymmetrical',
         buttonFace: 'fillEnabled',
-        font: 'Roboto',
         fontWeight: 'bolder',
         padding: 'spacious'
     },
     fitTo: 'width',
-    // Callbacks
+
+    // Callbacks.
+
     onChartRendered: (_chart) => {},
     onChartRenderingFailed: (_chart) => {},
     onChartRerenderingStarted: (_chart) => {},
@@ -188,7 +193,9 @@ const fullChartRendererConfig: Required<ChartRendererConfigOptions> = {
         confirmSelection({'adult': 10})
     },
     unifiedObjectPropertiesInCallbacks: true,
-    // Deprecated
+
+    // Deprecated.
+
     allowOrphanSeats: false,
     alwaysShowSectionContents: false,
     customTooltipText: false,
@@ -202,7 +209,18 @@ const fullChartRendererConfig: Required<ChartRendererConfigOptions> = {
     themeColors: 'someTheme',
     themePreset: 'somePreset',
     tooltipStyle: 'someStyle',
-    hideSectionsNotForSale: false
+    hideSectionsNotForSale: false,
+    objectTooltip: {
+        showActionHint: true,
+        showAvailability: false,
+        showCategory: true,
+        showLabel: true,
+        showPricing: true,
+        showUnavailableNotice: true,
+        stylizedLabel: true,
+        confirmSelectionOnMobile: 'auto'
+    },
+    tooltipInfo: object => "[b]This[/b] object's [i]id[/i] is [pre]" + object.label + "[/pre]"
 }
 
 // Set up a complete Event Manager config
@@ -217,10 +235,14 @@ const fullEventManagerConfig: Required<EventManagerConfigOptions> = {
     },
     stylePreset: 'bubblegum',
     style: {
+        font: 'Inter',
+        buttonShape: 'round',
+        cornerRadius: 'round',
+
+        // Deprecated:
         border: '3d',
         borderRadius: 'asymmetrical',
         buttonFace: 'fillEnabled',
-        font: 'Roboto',
         fontWeight: 'bolder',
         padding: 'spacious'
     },
@@ -231,7 +253,7 @@ const fullEventManagerConfig: Required<EventManagerConfigOptions> = {
         myCustomString: 'This is a custom string'
     },
     mode: 'manageObjectStatuses',
-    objectTooltip: {
+    objectPopover: {
         showOrderId: true,
         showTechnicalLabel: false
     },
@@ -241,12 +263,14 @@ const fullEventManagerConfig: Required<EventManagerConfigOptions> = {
         showSeatLabels: true,
         useChannelColors: true
     },
-    tooltipInfo: object => object.label || '',
+    popoverInfo: object => object.label || '',
     showFullScreenButton: true,
     extraConfig: {},
     fitTo: 'widthAndHeight',
     objectColor: (_object, _defaultColor, extraConfig) => 'red',
-    // Callbacks
+    
+    // Callbacks.
+
     onChartRendered: (_chart) => {},
     onChartRenderingFailed: (_chart) => {},
     onChartRerenderingStarted: (_chart) => {},
@@ -257,9 +281,16 @@ const fullEventManagerConfig: Required<EventManagerConfigOptions> = {
     onFullScreenClosed: () => {},
     onSubmitSucceeded: () => {},
     onSubmitFailed: () => {},
-    // Deprecated
+    
+    // Deprecated.
+
     themeColors: {},
-    themePreset: 'someTheme'
+    themePreset: 'someTheme',
+    objectTooltip: {
+        showOrderId: true,
+        showTechnicalLabel: false
+    },
+    tooltipInfo: object => object.label || ''
 }
 
 // Static Mode
