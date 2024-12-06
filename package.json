@@ -1,7 +1,7 @@
 {
     "name": "@seatsio/seatsio-types",
     "description": "Type definitions for Seats.io",
-    "version": "5.1.0",
+    "version": "5.2.0",
     "license": "MIT",
     "types": "dist/index.d.ts",
     "files": [
