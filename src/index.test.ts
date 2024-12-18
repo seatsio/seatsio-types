@@ -482,6 +482,7 @@ seatingChart.listSelectedObjects().then(objects => {
         obj.accessible
         obj.category
         obj.companionSeat
+        obj.liftUpArmrests
         obj.deselect
         obj.displayObjectType
         obj.label
