@@ -3,6 +3,7 @@
     "description": "Type definitions for Seats.io",
     "version": "5.3.0",
     "license": "MIT",
+    "module": "dist/index.js",
     "types": "dist/index.d.ts",
     "files": [
         "dist/index.d.ts"
@@ -17,7 +18,7 @@
         "semver": "7.6.3"
     },
     "scripts": {
-        "build": "yarn clean && yarn tsc",
+        "build": "yarn clean && tsc",
         "clean": "rm -rf ./dist/",
         "test": "yarn tsc --noEmit src/index.test.ts",
         "test:watch": "tsc --watch src/index.test.ts"
