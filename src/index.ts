@@ -1501,3 +1501,20 @@ export type ListingBySection = {
     minPrice: number
     quantity: number
 }
+
+// Runtime type helper functions
+export function isBooth(object: SelectableObject): object is Booth {
+    return object.objectType === 'Booth'
+}
+
+export function isSeat(object: SelectableObject): object is Seat {
+    return object.objectType === 'Seat'
+}
+
+export function isGeneralAdmission(object: SelectableObject): object is GeneralAdmissionArea {
+    return object.objectType === 'GeneralAdmissionArea'
+}
+
+export function isTable(object: SelectableObject): object is Table {
+    return object.objectType === 'Table'
+}
