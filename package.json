@@ -17,7 +17,8 @@
         "semver": "7.6.3"
     },
     "scripts": {
-        "build": "tsc",
+        "build": "yarn clean && yarn tsc",
+        "clean": "rm -rf ./dist/",
         "test": "yarn tsc --noEmit src/index.test.ts",
         "test:watch": "tsc --watch src/index.test.ts"
     }
