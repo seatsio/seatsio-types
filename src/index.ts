@@ -1502,7 +1502,7 @@ export type ListingBySection = {
     quantity: number
 }
 
-// Type helper functions
+// Runtime type helper functions
 export function isBooth(object: SelectableObject): object is Booth {
     return object.objectType === 'Booth'
 }
