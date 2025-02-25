@@ -1056,7 +1056,12 @@ export interface ChartRendererObjectPopover {
      * - If set to 'auto', it will behave just like 'touch', except that no popover will be shown on touch input devices when tapping on an object if the onObjectClicked parameter is passed in.
      * @default 'auto'
      */
-    confirmSelection?: 'auto' | 'always' | 'touch' | 'never'
+    confirmSelection?: 'auto' | 'always' | 'touch' | 'never',
+    /**
+     * If true, choosing a ticket type in a prompt will not immediately make a selection, but instead keep the modal open for the user to pick a different option, cancel, or confirm the choice.
+     * @default false
+     */
+    confirmTicketTypeSelection?: boolean
 }
 
 export type Language =
