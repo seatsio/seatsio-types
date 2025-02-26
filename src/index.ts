@@ -1449,6 +1449,9 @@ export interface SeatingChart {
     trySelectObjects: (objects: (string | SelectedAmount)[]) => Promise<void>
     pulse: (objects: string []) => Promise<void>
     unpulse: (objects: string []) => Promise<void>
+    setSpotlightObjects: (objects: string[]) => Promise<void>
+    setSpotlightOnSelection: () => Promise<void>
+    clearSpotlightObjects: () => Promise<void>
     startNewSession: () => Promise<void>
     zoomToFilteredCategories: () => Promise<void>
     zoomToSection: (label: string) => Section[],
@@ -1471,6 +1474,9 @@ export interface EventManager extends Pick<SeatingChart,
     | 'selectCategories'
     | 'trySelectObjects'
     | 'doSelectObjects'
+    | 'setSpotlightObjects'
+    | 'setSpotlightOnSelection'
+    | 'clearSpotlightObjects'
     | 'zoomToObjects'
     | 'zoomToSection'
     | 'zoomToSelectedObjects'
