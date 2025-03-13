@@ -180,6 +180,8 @@ const fullChartRendererConfig: Required<ChartRendererConfigOptions> = {
     onReleaseHoldFailed: (_objects, _ticketTypes) => {},
     onSelectionValid: () => {},
     onSelectionInvalid: () => {},
+    onHoldCallsInProgress: () => {},
+    onHoldCallsComplete: () => {},
     onFilteredCategoriesChanged: _categories => {},
     onFloorChanged: _floor => {},
     onPlacesPrompt: (parameters, confirmSelection) => {
@@ -268,7 +270,7 @@ const fullEventManagerConfig: Required<EventManagerConfigOptions> = {
     extraConfig: {},
     fitTo: 'widthAndHeight',
     objectColor: (_object, _defaultColor, extraConfig) => 'red',
-    
+
     // Callbacks.
 
     onChartRendered: (_chart) => {},
@@ -281,7 +283,7 @@ const fullEventManagerConfig: Required<EventManagerConfigOptions> = {
     onFullScreenClosed: () => {},
     onSubmitSucceeded: () => {},
     onSubmitFailed: () => {},
-    
+
     // Deprecated.
 
     themeColors: {},
