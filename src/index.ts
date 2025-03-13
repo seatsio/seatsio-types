@@ -864,6 +864,8 @@ export type ChartRendererCallbacks = {
     onSelectionInvalid?: (violations: string[]) => void
     onSelectionValid?: () => void
     onSessionInitialized?: (holdToken: HoldToken) => void
+    onHoldCallsInProgress?: () => void
+    onHoldCallsComplete?: () => void
 }
 
 export type EventManagerCallbacks =
