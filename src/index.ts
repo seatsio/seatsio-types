@@ -1383,6 +1383,7 @@ export interface AbstractBookableObject extends AbstractSelectableObject {
     readonly dataPerEvent: Dict<object>
     readonly seasonStatusOverriddenQuantity: number
     readonly entrance: string | null
+    readonly resaleListingId?: string
 
     // renderer properties
     inSelectableChannel?: boolean
