@@ -374,7 +374,6 @@ const eventManagerCreateOrderModeConfig: Required<EventManagerCreateOrderModeCon
     selectionValidators: [{ type: 'noOrphanSeats'}],
     maxSelectedObjects: 4,
     objectWithoutPricingSelectable: true,
-    popoverInfo: object => "[b]This[/b] object's [i]id[/i] is [pre]" + object.label + "[/pre]",
     categoryFilter: { enabled: true },
     availableCategories: [1, 2, 'Balcony'],
     unavailableCategories: [3, 4, 'Stalls'],
