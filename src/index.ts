@@ -1521,11 +1521,8 @@ export interface EventManager extends Pick<SeatingChart,
     | 'unpulse'
 > {
     setHighlightedObjects(strings: string[]): void
-
     clearHighlightedObjects(): void
-
     setFilteredSection(label: string): void
-
     clearFilteredSection(): void
 }
 
