@@ -381,6 +381,8 @@ export interface BaseEventManagerConfigOptions extends CommonConfigOptions, Extr
      * Allows to toggle on or off some features of the cursor tooltip, displayed when hovering objects when using pointing devices like a mouse, or when tapping on an object on touch devices.
      */
     messages?: EventAndChartManagerStrings
+    selectedObjects?: (string | SelectedAmount)[]
+    extraConfig?: ExtraConfig
     objectTooltip?: {
         /**
          * Show the orderId in the tooltip if present.
@@ -448,7 +450,6 @@ export interface EventManagerSelectModeConfigOptions extends BaseEventManagerCon
     maxSelectedObjects?: SelectionLimiter
     numberOfPlacesToSelect?: number
     isObjectSelectable?: (object: SelectableObject) => boolean
-    selectedObjects?: (string | SelectedAmount)[]
     selectionBy?: 'places' | 'objects'
     ticketTypes?: TicketTypeJsonWithoutPrice[]
     tooltipContents?: (object: object) => string
@@ -479,6 +480,37 @@ export interface EventManagerSelectModeConfigOptions extends BaseEventManagerCon
     }
 }
 
+export interface EventManagerCreateOrderModeConfigOptions extends BaseEventManagerConfigOptions, WithEvents {
+    mode: 'createOrder'
+    pricing?: Pricing
+    priceFormatter?: (price: number) => string
+    selectionValidators?: SelectionValidator[]
+    maxSelectedObjects?: SelectionLimiter
+    objectWithoutPricingSelectable?: boolean
+    categoryFilter?: CategoryFilter
+    availableCategories?: CategoryKey[]
+    unavailableCategories?: CategoryKey[]
+    filteredCategories?: CategoryKey[]
+    session?: Session
+    holdToken?: string
+    showLegend?: boolean
+    legend?: Legend
+    channels?: string[]
+
+    // callbacks
+    onFilteredCategoriesChanged?: (categories: Category[]) => void
+    onHoldFailed?: (objects: BookableObject[], ticketTypes: TicketTypeJson[]) => void
+    onHoldSucceeded?: (objects: BookableObject[], ticketTypes: TicketTypeJson[]) => void
+    onHoldTokenExpired?: () => void
+    onReleaseHoldFailed?: (objects: BookableObject[], ticketTypes: TicketTypeJson[]) => void
+    onReleaseHoldSucceeded?: (objects: BookableObject[], ticketTypes: TicketTypeJson[]) => void
+    onSelectionInvalid?: (violations: string[]) => void
+    onSelectionValid?: () => void
+    onSessionInitialized?: (holdToken: HoldToken) => void
+    onHoldCallsInProgress?: () => void
+    onHoldCallsComplete?: () => void
+}
+
 export interface EventManagerStaticModeConfigOptions extends BaseEventManagerConfigOptions, WithEvents {
     mode: 'static'
     onObjectMouseOver?: (object: SelectableObject) => void
@@ -493,6 +525,7 @@ export type EventManagerConfigOptions =
     | EventManagerSelectModeConfigOptions
     | EventManagerFilterSectionsModeConfigOptions
     | EventManagerStaticModeConfigOptions
+    | EventManagerCreateOrderModeConfigOptions
     | (BaseEventManagerConfigOptions & WithEvent)
 
 export type ChartDesignerConfigOptions =
@@ -539,7 +572,7 @@ export interface ChartDesignerReadOnlyModeConfigOptions extends BaseChartDesigne
     mode: 'readOnly'
 }
 
-export interface ChartDesignerSafeModeConfigOptions extends BaseChartDesignerConfigOptions{
+export interface ChartDesignerSafeModeConfigOptions extends BaseChartDesignerConfigOptions {
     mode: 'safe',
     safeModeOptions?: {
         allowDeletingObjects?: boolean,
@@ -1195,6 +1228,7 @@ export type EventManagerMode =
     | 'manageTableBooking'
     | 'select'
     | 'static'
+    | 'createOrder'
 
 export type SimplePricing = {
     category: CategoryKey
@@ -1487,8 +1521,11 @@ export interface EventManager extends Pick<SeatingChart,
     | 'unpulse'
 > {
     setHighlightedObjects(strings: string[]): void
+
     clearHighlightedObjects(): void
+
     setFilteredSection(label: string): void
+
     clearFilteredSection(): void
 }
 
