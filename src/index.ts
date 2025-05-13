@@ -496,6 +496,7 @@ export interface EventManagerCreateOrderModeConfigOptions extends BaseEventManag
     showLegend?: boolean
     legend?: Legend
     channels?: string[]
+    numberOfPlacesToSelect?: number
 
     // callbacks
     onFilteredCategoriesChanged?: (categories: Category[]) => void

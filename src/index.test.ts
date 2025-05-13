@@ -383,6 +383,7 @@ const eventManagerCreateOrderModeConfig: Required<EventManagerCreateOrderModeCon
     holdToken: 'myToken',
     legend: {},
     showLegend: true,
+    numberOfPlacesToSelect: 2,
 
     // Callbacks.
     onSessionInitialized: _holdToken => { },
