@@ -1,7 +1,7 @@
 import {
     ChartDesignerConfigOptions,
     ChartRendererConfigOptions,
-    EventManagerConfigOptions,
+    EventManagerConfigOptions, EventManagerCreateOrderModeConfigOptions,
     EventManagerFilterSectionsModeConfigOptions,
     EventManagerManageCategoriesModeConfigOptions,
     EventManagerManageChannelsModeConfigOptions,
@@ -254,6 +254,7 @@ const fullEventManagerConfig: Required<EventManagerConfigOptions> = {
         allPlacesAvailable: 'All free',
         myCustomString: 'This is a custom string'
     },
+    selectedObjects: ['A-1'],
     mode: 'manageObjectStatuses',
     objectPopover: {
         showOrderId: true,
@@ -359,6 +360,42 @@ const eventManagerSelectModeConfig: Required<EventManagerSelectModeConfigOptions
         showActionHint: true
     },
     isObjectSelectable: (_object) => true
+}
+
+// Create order mode
+const eventManagerCreateOrderModeConfig: Required<EventManagerCreateOrderModeConfigOptions> = {
+    ...fullEventManagerConfig,
+    mode: 'createOrder',
+    events: ['eventA', 'eventB'],
+    pricing: [
+        { category: 'A', price: 10, originalPrice: 15 }
+    ],
+    priceFormatter: price => '$' + price,
+    selectionValidators: [{ type: 'noOrphanSeats'}],
+    maxSelectedObjects: 4,
+    objectWithoutPricingSelectable: true,
+    categoryFilter: { enabled: true },
+    availableCategories: [1, 2, 'Balcony'],
+    unavailableCategories: [3, 4, 'Stalls'],
+    filteredCategories: ['Stalls'],
+    channels: ['0ef73fd9-693c-5073-98ac-d1dd8cd86536', 'NO_CHANNEL'],
+    session: 'continue',
+    holdToken: 'myToken',
+    legend: {},
+    showLegend: true,
+
+    // Callbacks.
+    onSessionInitialized: _holdToken => { },
+    onHoldSucceeded: (_objects, _ticketTypes) => {},
+    onHoldFailed: (_objects, _ticketTypes) => {},
+    onHoldTokenExpired: () => {},
+    onReleaseHoldSucceeded: (_objects, _ticketTypes) => {},
+    onReleaseHoldFailed: (_objects, _ticketTypes) => {},
+    onSelectionValid: () => {},
+    onSelectionInvalid: () => {},
+    onHoldCallsInProgress: () => {},
+    onHoldCallsComplete: () => {},
+    onFilteredCategoriesChanged: _categories => {}
 }
 
 // Set up a complete Chart Designer config - normal mode
