@@ -480,8 +480,7 @@ export interface EventManagerSelectModeConfigOptions extends BaseEventManagerCon
     }
 }
 
-export interface EventManagerCreateOrderModeConfigOptions extends BaseEventManagerConfigOptions, WithEvents {
-    mode: 'createOrder'
+export interface BaseEventManagerOrderModeConfigOptions extends BaseEventManagerConfigOptions, WithEvents {
     pricing?: Pricing
     priceFormatter?: (price: number) => string
     selectionValidators?: SelectionValidator[]
@@ -496,7 +495,6 @@ export interface EventManagerCreateOrderModeConfigOptions extends BaseEventManag
     showLegend?: boolean
     legend?: Legend
     channels?: string[]
-    numberOfPlacesToSelect?: number
 
     // callbacks
     onFilteredCategoriesChanged?: (categories: Category[]) => void
@@ -510,6 +508,16 @@ export interface EventManagerCreateOrderModeConfigOptions extends BaseEventManag
     onSessionInitialized?: (holdToken: HoldToken) => void
     onHoldCallsInProgress?: () => void
     onHoldCallsComplete?: () => void
+}
+
+export interface EventManagerCreateOrderModeConfigOptions extends BaseEventManagerOrderModeConfigOptions {
+    mode: 'createOrder'
+    numberOfPlacesToSelect?: number
+}
+
+export interface EventManagerEditOrderModeConfigOptions extends BaseEventManagerOrderModeConfigOptions {
+    mode: 'createOrder'
+    order: (string | SelectedAmount)[]
 }
 
 export interface EventManagerStaticModeConfigOptions extends BaseEventManagerConfigOptions, WithEvents {
@@ -1230,6 +1238,7 @@ export type EventManagerMode =
     | 'select'
     | 'static'
     | 'createOrder'
+    | 'editOrder'
 
 export type SimplePricing = {
     category: CategoryKey
@@ -1306,6 +1315,12 @@ interface SelectionValidatorMinimumSelectedPlaces {
 
 export interface SelectableAmount {
     label: string
+    amount: number
+}
+
+export interface OrderItem {
+    label: string
+    ticketType?: string
     amount: number
 }
 

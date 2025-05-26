@@ -1,7 +1,9 @@
 import {
     ChartDesignerConfigOptions,
     ChartRendererConfigOptions,
-    EventManagerConfigOptions, EventManagerCreateOrderModeConfigOptions,
+    EventManagerConfigOptions,
+    EventManagerCreateOrderModeConfigOptions,
+    EventManagerEditOrderModeConfigOptions,
     EventManagerFilterSectionsModeConfigOptions,
     EventManagerManageCategoriesModeConfigOptions,
     EventManagerManageChannelsModeConfigOptions,
@@ -384,6 +386,43 @@ const eventManagerCreateOrderModeConfig: Required<EventManagerCreateOrderModeCon
     legend: {},
     showLegend: true,
     numberOfPlacesToSelect: 2,
+
+    // Callbacks.
+    onSessionInitialized: _holdToken => { },
+    onHoldSucceeded: (_objects, _ticketTypes) => {},
+    onHoldFailed: (_objects, _ticketTypes) => {},
+    onHoldTokenExpired: () => {},
+    onReleaseHoldSucceeded: (_objects, _ticketTypes) => {},
+    onReleaseHoldFailed: (_objects, _ticketTypes) => {},
+    onSelectionValid: () => {},
+    onSelectionInvalid: () => {},
+    onHoldCallsInProgress: () => {},
+    onHoldCallsComplete: () => {},
+    onFilteredCategoriesChanged: _categories => {}
+}
+
+// Edit order mode
+const eventManagerEditOrderModeConfig: Required<EventManagerEditOrderModeConfigOptions> = {
+    ...fullEventManagerConfig,
+    mode: 'createOrder',
+    events: ['eventA', 'eventB'],
+    pricing: [
+        { category: 'A', price: 10, originalPrice: 15 }
+    ],
+    priceFormatter: price => '$' + price,
+    selectionValidators: [{ type: 'noOrphanSeats'}],
+    maxSelectedObjects: 4,
+    objectWithoutPricingSelectable: true,
+    categoryFilter: { enabled: true },
+    availableCategories: [1, 2, 'Balcony'],
+    unavailableCategories: [3, 4, 'Stalls'],
+    filteredCategories: ['Stalls'],
+    channels: ['0ef73fd9-693c-5073-98ac-d1dd8cd86536', 'NO_CHANNEL'],
+    session: 'continue',
+    holdToken: 'myToken',
+    legend: {},
+    showLegend: true,
+    order: [{label: 'A-1'}, 'A-2', {label: 'A-3', ticketType: 'adult', amount: 1}],
 
     // Callbacks.
     onSessionInitialized: _holdToken => { },
