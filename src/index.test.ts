@@ -541,11 +541,11 @@ const seatingChart = new seatsio.SeatingChart({
     event: 'myEvent'
 })
 
-new seatsio.EventManager({
+let eventManager = new seatsio.EventManager({
     event: 'myEvent',
     secretKey: 'mySecretKey',
     mode: 'static'
-})
+});
 
 new seatsio.SeatingChartDesigner({
     secretKey: 'mySecretKey'
@@ -574,4 +574,9 @@ seatingChart.listSelectedObjects().then(objects => {
         obj.selected
         obj.selectedTicketType
     })
+})
+
+// Event Manager tests
+eventManager.listOrderChanges().forEach(orderChange => {
+    console.log(orderChange.type, orderChange.object, orderChange.ticketType)
 })

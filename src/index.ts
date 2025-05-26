@@ -1324,6 +1324,18 @@ export interface OrderItem {
     amount: number
 }
 
+export enum OrderChangeType {
+    PLACE_ADDED = 'PLACE_ADDED',
+    PLACE_REMOVED = 'PLACE_REMOVED',
+    TICKET_TYPE_CHANGED = 'TICKET_TYPE_CHANGED'
+}
+
+export interface OrderChange {
+    type: OrderChangeType
+    object: string
+    ticketType?: string
+}
+
 export interface CategoryToJSON {
     label: string
     color: string
@@ -1540,6 +1552,7 @@ export interface EventManager extends Pick<SeatingChart,
     clearHighlightedObjects(): void
     setFilteredSection(label: string): void
     clearFilteredSection(): void
+    listOrderChanges(): OrderChange[]
 }
 
 export interface Channel {
