@@ -1318,12 +1318,6 @@ export interface SelectableAmount {
     amount: number
 }
 
-export interface OrderItem {
-    label: string
-    ticketType?: string
-    amount: number
-}
-
 export enum OrderChangeType {
     PLACE_ADDED = 'PLACE_ADDED',
     PLACE_REMOVED = 'PLACE_REMOVED',
