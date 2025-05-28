@@ -305,7 +305,7 @@ export interface ChartRendererConfigOptions extends DeprecatedConfigProperties, 
     fitTo?: 'widthAndHeight' | 'width'
     /**
      * This setting should only be used for accounts created before May 15th 2019. See the {@link https://docs.seats.io/docs/renderer/config-unifiedobjectpropertiesincallbacks documentation} for more details.
-     * @deprecated
+     * @remarks For accounts created after May 15th 2019, this property is set to true by default. You cannot set it to false.
      */
     unifiedObjectPropertiesInCallbacks?: boolean
     /**
