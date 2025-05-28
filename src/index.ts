@@ -956,7 +956,7 @@ export type Category = {
     color: string
     key: CategoryKey
     label: string
-    pricing: { price: number, formattedPrice: string },
+    pricing: { price: number, formattedPrice: string, fee?: Fee },
     hasSelectableObjects: boolean
 }
 
@@ -1240,10 +1240,16 @@ export type EventManagerMode =
     | 'createOrder'
     | 'editOrder'
 
+export type Fee = {
+    amount: number
+    includedInPrice?: boolean
+}
+
 export type SimplePricing = {
     category: CategoryKey
     originalPrice?: number
     price: number
+    fee?: Fee
     channels?: ChannelPricing[]
 }
 
@@ -1251,6 +1257,7 @@ export type SimplePricingForObjects = {
     objects: string[]
     originalPrice?: number
     price: number
+    fee?: Fee
     channels?: ChannelPricing[]
 }
 
@@ -1270,6 +1277,7 @@ export type SimpleChannelPricing = {
     channel: string
     originalPrice?: number
     price: number
+    fee?: Fee
 }
 
 export type MultiLevelChannelPricing = {
@@ -1282,6 +1290,7 @@ export type TicketType = {
     ticketType: string
     originalPrice?: number
     price: number
+    fee?: Fee
     label?: string,
     description?: string
 }
@@ -1362,6 +1371,7 @@ interface TicketTypeJsonWithoutPrice {
 export interface TicketTypeJson {
     ticketType: string
     price: number
+    fee?: Fee
     originalPrice?: number,
     label?: string
     description?: string
