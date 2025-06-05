@@ -197,7 +197,7 @@ const fullChartRendererConfig: Required<ChartRendererConfigOptions> = {
         confirmSelection({'adult': 10})
     },
     unifiedObjectPropertiesInCallbacks: true,
-    ticketBuyerId: 'dklmsqdqwe',
+    ticketBuyerId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
 
     // Deprecated.
 
