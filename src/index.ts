@@ -339,6 +339,11 @@ export interface ChartRendererConfigOptions extends DeprecatedConfigProperties, 
      * For charts with sections, enabling this setting will hide sections where all bookable objects are set as not for sale. By extension, this will also hide entire floors if every object on it is set as not for sale. {@link https://docs.seats.io/docs/renderer/config-hidesectionsnotforsale/ See documentation}
      */
     hideSectionsNotForSale?: boolean
+    /**
+     * The ticket buyer ID.
+     * Must be a valid UUID if provided.
+     */
+    ticketBuyerId?: string
 }
 
 export type ExtractedEventManagerProps = Pick<ChartRendererConfigOptions,
