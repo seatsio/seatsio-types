@@ -1295,7 +1295,11 @@ export type PricingForCategory = (SimplePricing | MultiLevelPricing)
 
 export type PricingForObjects = (SimplePricingForObjects | MultiLevelPricingForObjects)
 
-export type Pricing = (PricingForCategory | PricingForObjects)[]
+type LegacyPricing = (PricingForCategory | PricingForObjects)[]
+export type Pricing = {
+    priceFormatter?: (price: number) => string
+    prices: (PricingForCategory | PricingForObjects)[]
+} | LegacyPricing
 
 export type SelectionValidator =
     SelectionValidatorNoOrphanSeats
