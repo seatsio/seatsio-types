@@ -591,5 +591,6 @@ const objectPricing: Required<Pricing> = {
     priceFormatter: price => '$' + price,
     prices: [
         { category: 'A', price: 10, originalPrice: 15 }
-    ]
+    ],
+    showSectionPricingOverlay: true
 }

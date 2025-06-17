@@ -1293,7 +1293,8 @@ export type PricingForObjects = (SimplePricingForObjects | MultiLevelPricingForO
 type LegacyPricing = (PricingForCategory | PricingForObjects)[]
 export type Pricing = {
     priceFormatter?: (price: number) => string
-    prices: (PricingForCategory | PricingForObjects)[]
+    prices: (PricingForCategory | PricingForObjects)[],
+    showSectionPricingOverlay?: boolean
 } | LegacyPricing
 
 export type SelectionValidator =
