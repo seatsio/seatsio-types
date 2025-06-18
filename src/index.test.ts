@@ -9,7 +9,8 @@ import {
     EventManagerManageChannelsModeConfigOptions,
     EventManagerManageObjectStatusesModeConfigOptions,
     EventManagerSelectModeConfigOptions,
-    EventManagerStaticModeConfigOptions
+    EventManagerStaticModeConfigOptions,
+    Pricing
 } from './index'
 
 // Set up a complete Chart Renderer config
@@ -581,3 +582,16 @@ seatingChart.listSelectedObjects().then(objects => {
 eventManager.listOrderChanges().forEach(orderChange => {
     console.log(orderChange.type, orderChange.object, orderChange.ticketType)
 })
+
+// Pricing tests
+const legacyPricing: Required<Pricing> = [
+    { category: 'A', price: 10, originalPrice: 15 }
+]
+
+const objectPricing: Required<Pricing> = {
+    priceFormatter: price => '$' + price,
+    prices: [
+        { category: 'A', price: 10, originalPrice: 15 }
+    ],
+    showSectionPricingOverlay: true
+}
