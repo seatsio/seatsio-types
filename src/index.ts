@@ -141,15 +141,6 @@ export interface ChartRendererConfigOptions extends DeprecatedConfigProperties, 
      */
     multiSelectEnabled?: boolean
     /**
-     * This function is invoked when a user clicks on a GA area. If canGASelectionBeIncreased returns true, the user is able to increase the number of selected places by clicking on the + button of the ticket selector that pops up.
-     * @param gaArea The GA area that has been selected.
-     * @param defaultValue A boolean that indicates if additional GA places can be selected. This is determined by whether the number of selected places plus the number places booked by other users is smaller than the capacity of the GA area.
-     * @param extraConfig Variables and data from your application. See extraConfig.
-     * @param ticketType The ticket type for which the user clicked on the plus button. Optional.
-     * {@link https://docs.seats.io/docs/renderer/config-cangaselectionbeincreased See documentation}
-     */
-    canGASelectionBeIncreased?: (gaArea: GeneralAdmissionArea, defaultValue: boolean, extraConfig: ExtraConfig, ticketType?: TicketTypeJson) => boolean
-    /**
      * If your chart div is enclosed within a <form>element, you can use this configuration option to automatically add the selected seat IDs to the form data. This is one of the ways you can pass the selected seats to your server, so that you can book them later on through the Seats API.
      * {@link https://docs.seats.io/docs/renderer/config-selectedobjectsinputname See documentation}
      */

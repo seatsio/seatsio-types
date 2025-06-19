@@ -81,7 +81,6 @@ const fullChartRendererConfig: Required<ChartRendererConfigOptions> = {
     ],
     numberOfPlacesToSelect: 3,
     multiSelectEnabled: true,
-    canGASelectionBeIncreased: (_gaArea, defaultValue, _extraConfig, _ticketType) => defaultValue,
     selectedObjectsInputName: 'inputName',
     objectWithoutPricingSelectable: true,
     objectWithoutCategorySelectable: true,
