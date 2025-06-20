@@ -9,7 +9,8 @@ import {
     EventManagerManageChannelsModeConfigOptions,
     EventManagerManageObjectStatusesModeConfigOptions,
     EventManagerSelectModeConfigOptions,
-    EventManagerStaticModeConfigOptions
+    EventManagerStaticModeConfigOptions,
+    Pricing
 } from './index'
 
 // Set up a complete Chart Renderer config
@@ -80,7 +81,6 @@ const fullChartRendererConfig: Required<ChartRendererConfigOptions> = {
     ],
     numberOfPlacesToSelect: 3,
     multiSelectEnabled: true,
-    canGASelectionBeIncreased: (_gaArea, defaultValue, _extraConfig, _ticketType) => defaultValue,
     selectedObjectsInputName: 'inputName',
     objectWithoutPricingSelectable: true,
     objectWithoutCategorySelectable: true,
@@ -197,6 +197,7 @@ const fullChartRendererConfig: Required<ChartRendererConfigOptions> = {
         confirmSelection({'adult': 10})
     },
     unifiedObjectPropertiesInCallbacks: true,
+    ticketBuyerId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
 
     // Deprecated.
 
@@ -580,3 +581,16 @@ seatingChart.listSelectedObjects().then(objects => {
 eventManager.listOrderChanges().forEach(orderChange => {
     console.log(orderChange.type, orderChange.object, orderChange.ticketType)
 })
+
+// Pricing tests
+const legacyPricing: Required<Pricing> = [
+    { category: 'A', price: 10, originalPrice: 15 }
+]
+
+const objectPricing: Required<Pricing> = {
+    priceFormatter: price => '$' + price,
+    prices: [
+        { category: 'A', price: 10, originalPrice: 15 }
+    ],
+    showSectionPricingOverlay: true
+}

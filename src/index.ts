@@ -141,15 +141,6 @@ export interface ChartRendererConfigOptions extends DeprecatedConfigProperties, 
      */
     multiSelectEnabled?: boolean
     /**
-     * This function is invoked when a user clicks on a GA area. If canGASelectionBeIncreased returns true, the user is able to increase the number of selected places by clicking on the + button of the ticket selector that pops up.
-     * @param gaArea The GA area that has been selected.
-     * @param defaultValue A boolean that indicates if additional GA places can be selected. This is determined by whether the number of selected places plus the number places booked by other users is smaller than the capacity of the GA area.
-     * @param extraConfig Variables and data from your application. See extraConfig.
-     * @param ticketType The ticket type for which the user clicked on the plus button. Optional.
-     * {@link https://docs.seats.io/docs/renderer/config-cangaselectionbeincreased See documentation}
-     */
-    canGASelectionBeIncreased?: (gaArea: GeneralAdmissionArea, defaultValue: boolean, extraConfig: ExtraConfig, ticketType?: TicketTypeJson) => boolean
-    /**
      * If your chart div is enclosed within a <form>element, you can use this configuration option to automatically add the selected seat IDs to the form data. This is one of the ways you can pass the selected seats to your server, so that you can book them later on through the Seats API.
      * {@link https://docs.seats.io/docs/renderer/config-selectedobjectsinputname See documentation}
      */
@@ -305,7 +296,7 @@ export interface ChartRendererConfigOptions extends DeprecatedConfigProperties, 
     fitTo?: 'widthAndHeight' | 'width'
     /**
      * This setting should only be used for accounts created before May 15th 2019. See the {@link https://docs.seats.io/docs/renderer/config-unifiedobjectpropertiesincallbacks documentation} for more details.
-     * @deprecated
+     * @remarks For accounts created after May 15th 2019, this property is set to true by default. You cannot set it to false.
      */
     unifiedObjectPropertiesInCallbacks?: boolean
     /**
@@ -339,6 +330,11 @@ export interface ChartRendererConfigOptions extends DeprecatedConfigProperties, 
      * For charts with sections, enabling this setting will hide sections where all bookable objects are set as not for sale. By extension, this will also hide entire floors if every object on it is set as not for sale. {@link https://docs.seats.io/docs/renderer/config-hidesectionsnotforsale/ See documentation}
      */
     hideSectionsNotForSale?: boolean
+    /**
+     * The ticket buyer ID.
+     * Must be a valid UUID if provided.
+     */
+    ticketBuyerId?: string
 }
 
 export type ExtractedEventManagerProps = Pick<ChartRendererConfigOptions,
@@ -1299,7 +1295,12 @@ export type PricingForCategory = (SimplePricing | MultiLevelPricing)
 
 export type PricingForObjects = (SimplePricingForObjects | MultiLevelPricingForObjects)
 
-export type Pricing = (PricingForCategory | PricingForObjects)[]
+type LegacyPricing = (PricingForCategory | PricingForObjects)[]
+export type Pricing = {
+    priceFormatter?: (price: number) => string
+    prices: (PricingForCategory | PricingForObjects)[],
+    showSectionPricingOverlay?: boolean
+} | LegacyPricing
 
 export type SelectionValidator =
     SelectionValidatorNoOrphanSeats
