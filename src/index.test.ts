@@ -588,6 +588,7 @@ const legacyPricing: Required<Pricing> = [
 ]
 
 const objectPricing: Required<Pricing> = {
+    allFeesIncluded: true,
     priceFormatter: price => '$' + price,
     prices: [
         { category: 'A', price: 10, originalPrice: 15 }

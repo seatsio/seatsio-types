@@ -1297,6 +1297,7 @@ export type PricingForObjects = (SimplePricingForObjects | MultiLevelPricingForO
 
 type LegacyPricing = (PricingForCategory | PricingForObjects)[]
 export type Pricing = {
+    allFeesIncluded?: boolean
     priceFormatter?: (price: number) => string
     prices: (PricingForCategory | PricingForObjects)[],
     showSectionPricingOverlay?: boolean
