@@ -1282,6 +1282,7 @@ export type TicketType = {
     originalPrice?: number
     price: number
     fee?: number
+    primary?: boolean,
     label?: string,
     description?: string
 }
