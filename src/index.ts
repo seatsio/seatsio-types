@@ -1287,10 +1287,17 @@ export type TicketType = {
 }
 
 export type PricingForCategory = (SimplePricing | MultiLevelPricing)
-
 export type PricingForObjects = (SimplePricingForObjects | MultiLevelPricingForObjects)
 
-type LegacyPricing = (PricingForCategory | PricingForObjects)[]
+// Legacy types for backwards compatibility
+type LegacySimplePricing = Omit<SimplePricing, 'fee'>
+type LegacyMultiLevelPricing = Omit<MultiLevelPricing, 'ticketTypes'> & { ticketTypes: Omit<TicketType, 'fee'>[] }
+type LegacySimplePricingForObjects = Omit<SimplePricingForObjects, 'fee'>
+type LegacyMultiLevelPricingForObjects = Omit<MultiLevelPricingForObjects, 'ticketTypes'> & { ticketTypes: Omit<TicketType, 'fee'>[] }
+type LegacyPricingForCategory = (LegacySimplePricing | LegacyMultiLevelPricing)
+type LegacyPricingForObjects = (LegacySimplePricingForObjects | LegacyMultiLevelPricingForObjects)
+export type LegacyPricing = (LegacyPricingForCategory | LegacyPricingForObjects)[]
+
 export type Pricing = {
     allFeesIncluded?: boolean
     priceFormatter?: (price: number) => string
