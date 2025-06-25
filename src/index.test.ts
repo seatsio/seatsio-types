@@ -584,14 +584,14 @@ eventManager.listOrderChanges().forEach(orderChange => {
 
 // Pricing tests
 const legacyPricing: Required<Pricing> = [
-    { category: 'A', price: 10, originalPrice: 15 }
+    { category: 'A', price: 10, originalPrice: 15, fee: 10 }
 ]
 
 const objectPricing: Required<Pricing> = {
     allFeesIncluded: true,
     priceFormatter: price => '$' + price,
     prices: [
-        { category: 'A', price: 10, originalPrice: 15 }
+        { category: 'A', price: 10, originalPrice: 15, fee: 10 }
     ],
     showSectionPricingOverlay: true
 }
