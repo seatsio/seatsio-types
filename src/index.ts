@@ -1284,6 +1284,7 @@ export type TicketType = {
     fee?: number
     label?: string,
     description?: string
+    primary?: boolean
 }
 
 export type PricingForCategory = (SimplePricing | MultiLevelPricing)
