@@ -10,6 +10,7 @@ import {
     EventManagerManageObjectStatusesModeConfigOptions,
     EventManagerSelectModeConfigOptions,
     EventManagerStaticModeConfigOptions,
+    LegacyPricing,
     Pricing
 } from './index'
 
@@ -583,14 +584,29 @@ eventManager.listOrderChanges().forEach(orderChange => {
 })
 
 // Pricing tests
-const legacyPricing: Required<Pricing> = [
-    { category: 'A', price: 10, originalPrice: 15 }
+const legacyPricing: Required<LegacyPricing> = [
+    { category: 'A', price: 10, originalPrice: 15 },
+    { category: 'B', ticketTypes: [
+        { ticketType: 'adult', price: 30, label: 'Adults' },
+    ]},
+    { objects: ['A-1', 'A-2'], price: 10 },
+    { objects: ['A-1', 'A-2'], ticketTypes: [
+        { ticketType: 'Adult', price: 10}
+    ]}
 ]
 
 const objectPricing: Required<Pricing> = {
+    allFeesIncluded: true,
     priceFormatter: price => '$' + price,
     prices: [
-        { category: 'A', price: 10, originalPrice: 15 }
-    ],
+        { category: 'A', price: 10, originalPrice: 15, fee: 1 },
+        { category: 'B', ticketTypes: [
+            { ticketType: 'adult', price: 30, label: 'Adults', fee: 2 },
+        ]},
+        { objects: ['A-1', 'A-2'], price: 10, fee: 1 },
+        { objects: ['A-1', 'A-2'], ticketTypes: [
+            { ticketType: 'Adult', price: 10, fee: 1 }
+        ]
+    }],
     showSectionPricingOverlay: true
 }

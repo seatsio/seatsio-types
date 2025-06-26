@@ -952,7 +952,7 @@ export type Category = {
     color: string
     key: CategoryKey
     label: string
-    pricing: { price: number, formattedPrice: string },
+    pricing: { price: number, formattedPrice: string, fee?: number },
     hasSelectableObjects: boolean
 }
 
@@ -1240,6 +1240,7 @@ export type SimplePricing = {
     category: CategoryKey
     originalPrice?: number
     price: number
+    fee?: number
     channels?: ChannelPricing[]
 }
 
@@ -1247,6 +1248,7 @@ export type SimplePricingForObjects = {
     objects: string[]
     originalPrice?: number
     price: number
+    fee?: number
     channels?: ChannelPricing[]
 }
 
@@ -1266,6 +1268,7 @@ export type SimpleChannelPricing = {
     channel: string
     originalPrice?: number
     price: number
+    fee?: number
 }
 
 export type MultiLevelChannelPricing = {
@@ -1278,16 +1281,25 @@ export type TicketType = {
     ticketType: string
     originalPrice?: number
     price: number
+    fee?: number
     label?: string,
     description?: string
 }
 
 export type PricingForCategory = (SimplePricing | MultiLevelPricing)
-
 export type PricingForObjects = (SimplePricingForObjects | MultiLevelPricingForObjects)
 
-type LegacyPricing = (PricingForCategory | PricingForObjects)[]
+// Legacy types for backwards compatibility
+type LegacySimplePricing = Omit<SimplePricing, 'fee'>
+type LegacyMultiLevelPricing = Omit<MultiLevelPricing, 'ticketTypes'> & { ticketTypes: Omit<TicketType, 'fee'>[] }
+type LegacySimplePricingForObjects = Omit<SimplePricingForObjects, 'fee'>
+type LegacyMultiLevelPricingForObjects = Omit<MultiLevelPricingForObjects, 'ticketTypes'> & { ticketTypes: Omit<TicketType, 'fee'>[] }
+type LegacyPricingForCategory = (LegacySimplePricing | LegacyMultiLevelPricing)
+type LegacyPricingForObjects = (LegacySimplePricingForObjects | LegacyMultiLevelPricingForObjects)
+export type LegacyPricing = (LegacyPricingForCategory | LegacyPricingForObjects)[]
+
 export type Pricing = {
+    allFeesIncluded?: boolean
     priceFormatter?: (price: number) => string
     prices: (PricingForCategory | PricingForObjects)[],
     showSectionPricingOverlay?: boolean
@@ -1363,6 +1375,7 @@ interface TicketTypeJsonWithoutPrice {
 export interface TicketTypeJson {
     ticketType: string
     price: number
+    fee?: number
     originalPrice?: number,
     label?: string
     description?: string
