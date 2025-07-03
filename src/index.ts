@@ -1310,6 +1310,7 @@ export type SelectionValidator =
     SelectionValidatorNoOrphanSeats
     | SelectionValidatorConsecutiveSeats
     | SelectionValidatorMinimumSelectedPlaces
+    | SelectionValidatorCompanionSeats
 
 interface SelectionValidatorNoOrphanSeats {
     type: 'noOrphanSeats'
@@ -1325,6 +1326,11 @@ interface SelectionValidatorConsecutiveSeats {
 interface SelectionValidatorMinimumSelectedPlaces {
     type: 'minimumSelectedPlaces'
     minimum: number
+}
+
+interface SelectionValidatorCompanionSeats {
+    type: 'companionSeats'
+    enabled: boolean
 }
 
 export interface SelectableAmount {
