@@ -1330,7 +1330,7 @@ interface SelectionValidatorMinimumSelectedPlaces {
 
 interface SelectionValidatorCompanionSeats {
     type: 'companionSeats'
-    enabled: boolean
+    enabled?: boolean
 }
 
 export interface SelectableAmount {
