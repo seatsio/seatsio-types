@@ -986,7 +986,7 @@ export type StyleOverride = {
     /**
      * @deprecated
      */
-    buttonFace: 'fillEnabled' | 'fillHighlightedOption'
+    buttonFace?: 'fillEnabled' | 'fillHighlightedOption'
 }
 
 export type ExtraConfig = Dict<any>
