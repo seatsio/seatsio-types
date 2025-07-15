@@ -407,7 +407,7 @@ const eventManagerCreateOrderModeConfig: Required<EventManagerCreateOrderModeCon
 // Edit order mode
 const eventManagerEditOrderModeConfig: Required<EventManagerEditOrderModeConfigOptions> = {
     ...fullEventManagerConfig,
-    mode: 'createOrder',
+    mode: 'editOrder',
     events: ['eventA', 'eventB'],
     pricing: [
         { category: 'A', price: 10, originalPrice: 15 }
