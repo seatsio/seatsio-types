@@ -512,7 +512,7 @@ export interface EventManagerCreateOrderModeConfigOptions extends BaseEventManag
 }
 
 export interface EventManagerEditOrderModeConfigOptions extends BaseEventManagerOrderModeConfigOptions {
-    mode: 'createOrder'
+    mode: 'editOrder'
     order: (string | SelectedAmount)[]
 }
 
@@ -531,6 +531,7 @@ export type EventManagerConfigOptions =
     | EventManagerFilterSectionsModeConfigOptions
     | EventManagerStaticModeConfigOptions
     | EventManagerCreateOrderModeConfigOptions
+    | EventManagerEditOrderModeConfigOptions
     | (BaseEventManagerConfigOptions & WithEvent)
 
 export type ChartDesignerConfigOptions =
