@@ -1568,7 +1568,7 @@ export interface EventManager extends Pick<SeatingChart,
     clearHighlightedObjects(): void
     setFilteredSection(label: string): void
     clearFilteredSection(): void
-    listOrderChanges(): OrderChange[]
+    listOrderChanges(): Promise<OrderChange[]>
 }
 
 export interface Channel {
