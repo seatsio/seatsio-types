@@ -580,8 +580,10 @@ seatingChart.listSelectedObjects().then(objects => {
 })
 
 // Event Manager tests
-eventManager.listOrderChanges().forEach(orderChange => {
-    console.log(orderChange.type, orderChange.object, orderChange.ticketType)
+eventManager.listOrderChanges().then(objects => {
+    objects.forEach(orderChange => {
+        console.log(orderChange.type, orderChange.object, orderChange.ticketType)
+    })
 })
 
 // Pricing tests
