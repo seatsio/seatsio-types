@@ -407,7 +407,7 @@ const eventManagerCreateOrderModeConfig: Required<EventManagerCreateOrderModeCon
 // Edit order mode
 const eventManagerEditOrderModeConfig: Required<EventManagerEditOrderModeConfigOptions> = {
     ...fullEventManagerConfig,
-    mode: 'createOrder',
+    mode: 'editOrder',
     events: ['eventA', 'eventB'],
     pricing: [
         { category: 'A', price: 10, originalPrice: 15 }
@@ -580,8 +580,10 @@ seatingChart.listSelectedObjects().then(objects => {
 })
 
 // Event Manager tests
-eventManager.listOrderChanges().forEach(orderChange => {
-    console.log(orderChange.type, orderChange.object, orderChange.ticketType)
+eventManager.listOrderChanges().then(objects => {
+    objects.forEach(orderChange => {
+        console.log(orderChange.type, orderChange.object, orderChange.ticketType)
+    })
 })
 
 // Pricing tests
