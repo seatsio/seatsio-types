@@ -1102,7 +1102,12 @@ export interface ChartRendererObjectPopover {
      * If true, choosing a ticket type in a prompt will not immediately make a selection, but instead keep the modal open for the user to pick a different option, cancel, or confirm the choice.
      * @default false
      */
-    confirmTicketTypeSelection?: boolean
+    confirmTicketTypeSelection?: boolean,
+    /**
+     * If false, when interacting with objects with a single ticket type, the prompt will not be shown and instead will immediately select the object.
+     * @default true
+     */
+    confirmSingleTicketType?: boolean
 }
 
 export type Language =
