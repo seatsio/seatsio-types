@@ -899,7 +899,11 @@ export type ChartRendererCallbacks = {
     onObjectStatusChanged?: (object: BookableObject) => void
     onReleaseHoldFailed?: (objects: BookableObject[], ticketTypes: TicketTypeJson[]) => void
     onReleaseHoldSucceeded?: (objects: BookableObject[], ticketTypes: TicketTypeJson[]) => void
+    /**
+     * @deprecated
+     */
     onSelectedObjectBooked?: (object: BookableObject) => void
+    onSelectedObjectUnavailable?: (object: BookableObject) => void
     onSelectionInvalid?: (violations: string[]) => void
     onSelectionValid?: () => void
     onSessionInitialized?: (holdToken: HoldToken) => void
