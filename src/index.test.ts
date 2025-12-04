@@ -131,6 +131,7 @@ const fullChartRendererConfig: Required<ChartRendererConfigOptions> = {
     holdOnSelectForGAs: true,
     showMinimap: true,
     showFullScreenButton: true,
+    showAccessibilityFilter: true,
     legend: {
         hideUnavailableLegendItem: true,
         hideNonSelectableCategories: true,
