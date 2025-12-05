@@ -248,6 +248,11 @@ export interface ChartRendererConfigOptions extends DeprecatedConfigProperties, 
      */
     showFullScreenButton?: boolean
     /**
+     * Whether to show the accessibility filter. See the {@link https://docs.seats.io/docs/renderer/config-showAccessibilityFilter documentation} for more information.
+     * @default true
+     */
+    showAccessibilityFilter?: boolean
+    /**
      * If true, a legend with the category names and colors is rendered at the top of the chart.
      * @default false
      */
