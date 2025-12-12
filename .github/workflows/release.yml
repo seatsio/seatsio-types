@@ -43,9 +43,11 @@ jobs:
       - name: Trigger dependent repos
         run: |
           VERSION=$(node -p "require('./package.json').version")
-          gh api repos/seatsio/seatsio-react/dispatches \
-            -f event_type=seatsio-types-release \
-            -f client_payload[version]=$VERSION
+          for REPO in seatsio-react seatsio-vue seatsio-angular seatsio-react-native; do
+            gh api repos/seatsio/$REPO/dispatches \
+              -f event_type=seatsio-types-release \
+              -f client_payload[version]=$VERSION
+          done
         env:
           GH_TOKEN: ${{ secrets.REPO_DISPATCH_TOKEN }}
 
