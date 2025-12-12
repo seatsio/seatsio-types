@@ -2,8 +2,7 @@
     "compilerOptions": {
         "outDir": "dist",
         "declaration": true,
-        "emitDeclarationOnly": false,
-        "skipLibCheck": true
+        "emitDeclarationOnly": false
     },
     "include": [
         "src/index.ts"
