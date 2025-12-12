@@ -40,6 +40,14 @@ jobs:
       - run: yarn publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+      - name: Trigger dependent repos
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          gh api repos/seatsio/seatsio-react/dispatches \
+            -f event_type=seatsio-types-release \
+            -f client_payload[version]=$VERSION
+        env:
+          GH_TOKEN: ${{ secrets.REPO_DISPATCH_TOKEN }}
 
   notify-slack-failure:
     runs-on: ubuntu-latest
