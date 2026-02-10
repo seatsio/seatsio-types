@@ -1412,6 +1412,7 @@ export type PriceType = number | string
 export interface InteractiveObject {
     readonly label: string
     readonly labels: Labels
+    readonly floor?: string
 }
 
 export interface NonBookableTable extends InteractiveObject {
