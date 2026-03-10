@@ -1434,6 +1434,10 @@ export interface AbstractSelectableObject extends InteractiveObject {
     readonly selected: boolean
     readonly selectedTicketType: string | undefined
     readonly accessible: boolean | undefined
+    readonly hearingImpaired: boolean | undefined
+    readonly signLanguageInterpretation: boolean | undefined
+    readonly cartServices: boolean | undefined
+    readonly plusSize: boolean | undefined
     readonly restrictedView: boolean | undefined
     readonly companionSeat: boolean | undefined
     readonly liftUpArmrests: boolean | undefined
