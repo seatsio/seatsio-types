@@ -966,6 +966,11 @@ export type Category = {
     hasSelectableObjects: boolean
 }
 
+export type Zone = {
+    key: string
+    label: string | null
+}
+
 export type HoldToken = {
     token: string,
     expiresAt: string,
@@ -1413,6 +1418,7 @@ export interface InteractiveObject {
     readonly label: string
     readonly labels: Labels
     readonly floor?: string
+    readonly zone?: string
 }
 
 export interface NonBookableTable extends InteractiveObject {
@@ -1534,6 +1540,7 @@ export interface SeatingChart {
     getReportBySelectability: () => Promise<Object>
     holdToken: string
     listCategories: () => Promise<Category[]>
+    listZones: () => Promise<Zone[]>
     listSelectedObjects: () => Promise<SelectableObject[]>
     render: () => SeatingChart
     rerender: () => void
