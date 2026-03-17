@@ -1530,6 +1530,8 @@ export interface GeneralAdmissionArea extends AbstractBookableObject {
 export type BookableObject = Seat | GeneralAdmissionArea | Booth | Table
 export type SelectableObject = BookableObject | InteractiveSection
 
+export type ReportGroupedBy = 'zone'
+
 export interface SeatingChart {
     changeConfig: (config: ConfigChange) => Promise<void>
     clearSelection: () => Promise<void>
@@ -1538,6 +1540,7 @@ export interface SeatingChart {
     destroy: () => void
     findObject: (label: string) => Promise<SelectableObject>
     getReportBySelectability: () => Promise<Object>
+    getReportBySelectabilityGroupedBy: (groupBy: ReportGroupedBy) => Promise<Object>
     holdToken: string
     listCategories: () => Promise<Category[]>
     listZones: () => Promise<Zone[]>
