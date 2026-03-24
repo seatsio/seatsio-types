@@ -1300,6 +1300,8 @@ export type TicketType = {
     label?: string,
     description?: string
     primary?: boolean
+    unavailable?: boolean
+    unavailableReason?: 'unavailable' | 'soldOut' | (string & {})
 }
 
 export type PricingForCategory = (SimplePricing | MultiLevelPricing)
