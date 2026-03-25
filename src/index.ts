@@ -1437,11 +1437,14 @@ export interface NonBookableTableSeat extends InteractiveObject {
     readonly parent: { type: 'row' | 'table' }
 }
 
+export type WheelchairSpaceType = 'WHEELCHAIR_ACCESSIBLE_SEAT' | 'WHEELCHAIR_SPACE'
+
 export interface AbstractSelectableObject extends InteractiveObject {
     readonly objectType: string
     readonly selected: boolean
     readonly selectedTicketType: string | undefined
     readonly accessible: boolean | undefined
+    readonly wheelchairSpaceType: WheelchairSpaceType | undefined
     readonly hearingImpaired: boolean | undefined
     readonly signLanguageInterpretation: boolean | undefined
     readonly cartServices: boolean | undefined

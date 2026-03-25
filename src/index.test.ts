@@ -564,6 +564,7 @@ seatingChart.deselectObjects(['A1', { label: 'someLabel', ticketType: 'aTicketTy
 seatingChart.listSelectedObjects().then(objects => {
     objects.forEach(obj => {
         obj.accessible
+        obj.wheelchairSpaceType
         obj.category
         obj.companionSeat
         obj.liftUpArmrests
