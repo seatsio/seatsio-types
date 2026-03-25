@@ -893,6 +893,8 @@ export type ChartRendererCallbacks = {
     onFloorChanged?: (floor?: Floor) => void
     onFullScreenClosed?: () => void
     onFullScreenOpened?: () => void
+    onBestAvailableHeld?: (objects: string[], nextToEachOther: boolean) => void
+    onBestAvailableHoldFailed?: (error: { message: string }) => void
     onHoldFailed?: (objects: BookableObject[], ticketTypes: TicketTypeJson[]) => void
     onHoldSucceeded?: (objects: BookableObject[], ticketTypes: TicketTypeJson[]) => void
     onHoldTokenExpired?: () => void
@@ -1535,6 +1537,20 @@ export interface GeneralAdmissionArea extends AbstractBookableObject {
 export type BookableObject = Seat | GeneralAdmissionArea | Booth | Table
 export type SelectableObject = BookableObject | InteractiveSection
 
+export interface BestAvailableForHoldingConfig {
+    number?: number
+    categories?: CategoryKey[]
+    zone?: string
+    sections?: string[]
+    accessibleSeats?: number
+    ticketTypes?: Record<string, number>
+}
+
+export interface BestAvailableHeldResult {
+    objects: string[]
+    nextToEachOther?: boolean
+}
+
 export type ReportGroupedBy = 'zone'
 
 export interface SeatingChart {
@@ -1546,6 +1562,7 @@ export interface SeatingChart {
     findObject: (label: string) => Promise<SelectableObject>
     getReportBySelectability: () => Promise<Object>
     getReportBySelectabilityGroupedBy: (groupBy: ReportGroupedBy) => Promise<Object>
+    holdBestAvailable: (config: BestAvailableForHoldingConfig) => Promise<BestAvailableHeldResult>
     holdToken: string
     listCategories: () => Promise<Category[]>
     listZones: () => Promise<Zone[]>
