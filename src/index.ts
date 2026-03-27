@@ -1535,7 +1535,7 @@ export interface GeneralAdmissionArea extends AbstractBookableObject {
 export type BookableObject = Seat | GeneralAdmissionArea | Booth | Table
 export type SelectableObject = BookableObject | InteractiveSection
 
-export interface BestAvailableForHoldingConfig {
+export interface BestAvailableConfig {
     number?: number
     categories?: CategoryKey[]
     zone?: string
@@ -1560,7 +1560,7 @@ export interface SeatingChart {
     findObject: (label: string) => Promise<SelectableObject>
     getReportBySelectability: () => Promise<Object>
     getReportBySelectabilityGroupedBy: (groupBy: ReportGroupedBy) => Promise<Object>
-    holdBestAvailable: (config: BestAvailableForHoldingConfig) => Promise<BestAvailableHeldResult>
+    holdBestAvailable: (config: BestAvailableConfig) => Promise<BestAvailableHeldResult>
     holdToken: string
     listCategories: () => Promise<Category[]>
     listZones: () => Promise<Zone[]>
