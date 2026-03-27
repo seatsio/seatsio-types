@@ -893,8 +893,6 @@ export type ChartRendererCallbacks = {
     onFloorChanged?: (floor?: Floor) => void
     onFullScreenClosed?: () => void
     onFullScreenOpened?: () => void
-    onBestAvailableHeld?: (objects: string[], nextToEachOther?: boolean) => void
-    onBestAvailableHoldFailed?: (error: { message: string }) => void
     onHoldFailed?: (objects: BookableObject[], ticketTypes: TicketTypeJson[]) => void
     onHoldSucceeded?: (objects: BookableObject[], ticketTypes: TicketTypeJson[]) => void
     onHoldTokenExpired?: () => void
@@ -1547,7 +1545,7 @@ export interface BestAvailableForHoldingConfig {
 }
 
 export interface BestAvailableHeldResult {
-    objects: string[]
+    objects: SelectableObject[]
     nextToEachOther?: boolean
 }
 
