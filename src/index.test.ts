@@ -268,7 +268,7 @@ const fullEventManagerConfig: Required<EventManagerConfigOptions> = {
         showTechnicalLabel: false
     },
     secretKey: 'mySecretKey',
-    viewSettingsDefaults: {
+    viewSettings: {
         showRowLabels: true,
         showSeatLabels: true,
         useChannelColors: true

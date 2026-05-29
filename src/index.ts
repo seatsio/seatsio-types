@@ -408,7 +408,7 @@ export interface BaseEventManagerConfigOptions extends CommonConfigOptions, Extr
          */
         showTechnicalLabel?: boolean
     }
-    viewSettingsDefaults?: {
+    viewSettings?: {
         /**
          * @default false
          */
