@@ -52,6 +52,14 @@ const fullChartRendererConfig: Required<ChartRendererConfigOptions> = {
     ],
     priceFormatter: price => '$' + price,
     showSectionPricingOverlay: true,
+    listings: [
+        { id: 'vip', objects: ['A-1', 'A-2'], selectAsGroup: true, listingType: 'premium' },
+        { id: 'hot', objects: ['B-1'] }
+    ],
+    listingTypes: {
+        premium: { label: 'Premium', icon: 'star' },
+        hot: { label: 'Hot', icon: 'fire' }
+    },
     selectedObjects: [
         'A-1',
         {
@@ -612,6 +620,10 @@ const objectPricing: Required<Pricing> = {
         { objects: ['A-1', 'A-2'], price: 10, fee: 1 },
         { objects: ['A-1', 'A-2'], ticketTypes: [
             { ticketType: 'Adult', price: 10, fee: 1 }
+        ]},
+        { listing: 'vip', price: 100, originalPrice: 120, fee: 2 },
+        { listing: 'hot', ticketTypes: [
+            { ticketType: 'adult', price: 30, fee: 1 }
         ]
     }],
     showSectionPricingOverlay: true
