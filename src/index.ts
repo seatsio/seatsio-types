@@ -97,6 +97,14 @@ export interface ChartRendererConfigOptions extends DeprecatedConfigProperties, 
      */
     pricing?: Pricing
     /**
+     * Groups objects into listings that can be configured with a type and selected together.
+     */
+    listings?: ConfigListing[]
+    /**
+     * Defines the available listing types, each with an optional icon and label.
+     */
+    listingTypes?: ListingTypes
+    /**
      * Formats the price into a custom defined string when showing it to and en user. {@link https://docs.seats.io/docs/renderer/config-priceformatter See documentation}
      */
     priceFormatter?: (price: number) => string
@@ -1277,6 +1285,18 @@ export type MultiLevelPricingForObjects = {
     ticketTypes: TicketType[]
 }
 
+export type SimplePricingForListing = {
+    listing: string
+    originalPrice?: number
+    price: number
+    fee?: number
+}
+
+export type MultiLevelPricingForListing = {
+    listing: string
+    ticketTypes: TicketType[]
+}
+
 export type ChannelPricing = (SimpleChannelPricing | MultiLevelChannelPricing)
 
 export type SimpleChannelPricing = {
@@ -1306,6 +1326,7 @@ export type TicketType = {
 
 export type PricingForCategory = (SimplePricing | MultiLevelPricing)
 export type PricingForObjects = (SimplePricingForObjects | MultiLevelPricingForObjects)
+export type PricingForListing = (SimplePricingForListing | MultiLevelPricingForListing)
 
 // Legacy types for backwards compatibility
 type LegacySimplePricing = Omit<SimplePricing, 'fee'>
@@ -1319,7 +1340,7 @@ export type LegacyPricing = (LegacyPricingForCategory | LegacyPricingForObjects)
 export type Pricing = {
     allFeesIncluded?: boolean
     priceFormatter?: (price: number) => string
-    prices: (PricingForCategory | PricingForObjects)[],
+    prices: (PricingForCategory | PricingForObjects | PricingForListing)[],
     showSectionPricingOverlay?: boolean
 } | LegacyPricing
 
@@ -1638,6 +1659,20 @@ export type ListingBySection = {
     minPrice: number
     quantity: number
 }
+
+export interface ConfigListing {
+    id: string
+    objects?: string[]
+    listingType?: string
+    selectAsGroup?: boolean
+}
+
+export interface ListingType {
+    icon?: string
+    label?: string
+}
+
+export type ListingTypes = Dict<ListingType>
 
 // Runtime type helper functions
 export function isBooth(object: SelectableObject): object is Booth {
