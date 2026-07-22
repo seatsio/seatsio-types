@@ -571,7 +571,7 @@ export interface BaseChartDesignerConfigOptions {
     /**
      * Documentation: {@link https://docs.seats.io/docs/embedded-designer/configuration-language}
      */
-    language?: 'de' | 'en' | 'es' | 'fr' | 'pt' | 'it' | 'ar'
+    language?: 'de' | 'en' | 'es' | 'fr' | 'pt' | 'it' | 'ar' | 'pl'
     onChartCreated?: (chartKey: string) => void
     onChartPublished?: (chartKey: string) => void
     onChartUpdated?: (chartKey: string) => void
