@@ -566,7 +566,7 @@ export interface BaseChartDesignerConfigOptions {
     features?: {
         disabled?: (keyof ChartDesignerFeatures)[]
         enabled?: (keyof ChartDesignerFeatures)[]
-        readOnly?: ('chartName' | 'categoryList')[]
+        readOnly?: ('chartName' | 'categoryList' | 'categoryKeys')[]
     }
     /**
      * Documentation: {@link https://docs.seats.io/docs/embedded-designer/configuration-language}

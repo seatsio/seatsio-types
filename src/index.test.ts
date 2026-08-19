@@ -460,7 +460,7 @@ const chartDesignerConfigNormalMode: Required<ChartDesignerConfigOptions> = {
     language: 'en',
     features: {
         disabled: ['areas', 'backgroundImage'],
-        readOnly: ['categoryList', 'chartName']
+        readOnly: ['categoryKeys', 'categoryList', 'chartName']
     },
     mode: 'normal',
     openDraftDrawing: true,
@@ -485,7 +485,7 @@ const chartDesignerConfigReadOnlyMode: Required<ChartDesignerConfigOptions> = {
     language: 'en',
     features: {
         disabled: ['areas', 'backgroundImage'],
-        readOnly: ['categoryList', 'chartName']
+        readOnly: ['categoryKeys', 'categoryList', 'chartName']
     },
     mode: 'readOnly',
     openDraftDrawing: true,
@@ -509,7 +509,7 @@ const chartDesignerConfigSafeMode: Required<ChartDesignerConfigOptions> = {
     language: 'en',
     features: {
         disabled: ['areas', 'backgroundImage'],
-        readOnly: ['categoryList', 'chartName']
+        readOnly: ['categoryKeys', 'categoryList', 'chartName']
     },
     mode: 'safe',
     safeModeOptions: {
