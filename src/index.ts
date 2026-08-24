@@ -1471,6 +1471,8 @@ export interface AbstractSelectableObject extends InteractiveObject {
     readonly cartServices: boolean | undefined
     readonly plusSize: boolean | undefined
     readonly restrictedView: boolean | undefined
+    readonly vertigo: boolean | undefined
+    readonly limitedLegroom: boolean | undefined
     readonly companionSeat: boolean | undefined
     readonly liftUpArmrests: boolean | undefined
     readonly displayObjectType: string | undefined

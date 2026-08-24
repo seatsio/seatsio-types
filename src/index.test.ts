@@ -583,6 +583,8 @@ seatingChart.listSelectedObjects().then(objects => {
         obj.objectType
         obj.pricing
         obj.restrictedView
+        obj.vertigo
+        obj.limitedLegroom
         obj.select
         obj.selectable
         obj.selected
