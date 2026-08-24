@@ -1472,6 +1472,7 @@ export interface AbstractSelectableObject extends InteractiveObject {
     readonly plusSize: boolean | undefined
     readonly restrictedView: boolean | undefined
     readonly companionSeat: boolean | undefined
+    readonly semiAmbulatorySeat: boolean | undefined
     readonly liftUpArmrests: boolean | undefined
     readonly displayObjectType: string | undefined
     readonly category?: CategoryToJSON
