@@ -575,6 +575,7 @@ seatingChart.listSelectedObjects().then(objects => {
         obj.wheelchairSpaceType
         obj.category
         obj.companionSeat
+        obj.semiAmbulatorySeat
         obj.liftUpArmrests
         obj.deselect
         obj.displayObjectType
@@ -583,6 +584,8 @@ seatingChart.listSelectedObjects().then(objects => {
         obj.objectType
         obj.pricing
         obj.restrictedView
+        obj.vertigo
+        obj.limitedLegroom
         obj.select
         obj.selectable
         obj.selected
