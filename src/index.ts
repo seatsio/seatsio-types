@@ -97,6 +97,14 @@ export interface ChartRendererConfigOptions extends DeprecatedConfigProperties, 
      */
     pricing?: Pricing
     /**
+     * Groups objects into listings that can be configured with a type and selected together.
+     */
+    listings?: ConfigListing[]
+    /**
+     * Defines the available listing types, each with an optional icon and label.
+     */
+    listingTypes?: ListingTypes
+    /**
      * Formats the price into a custom defined string when showing it to and en user. {@link https://docs.seats.io/docs/renderer/config-priceformatter See documentation}
      */
     priceFormatter?: (price: number) => string
@@ -408,7 +416,7 @@ export interface BaseEventManagerConfigOptions extends CommonConfigOptions, Extr
          */
         showTechnicalLabel?: boolean
     }
-    viewSettingsDefaults?: {
+    viewSettings?: {
         /**
          * @default false
          */
@@ -558,12 +566,12 @@ export interface BaseChartDesignerConfigOptions {
     features?: {
         disabled?: (keyof ChartDesignerFeatures)[]
         enabled?: (keyof ChartDesignerFeatures)[]
-        readOnly?: ('chartName' | 'categoryList')[]
+        readOnly?: ('chartName' | 'categoryList' | 'categoryKeys')[]
     }
     /**
      * Documentation: {@link https://docs.seats.io/docs/embedded-designer/configuration-language}
      */
-    language?: 'de' | 'en' | 'es' | 'fr' | 'pt' | 'it' | 'ar'
+    language?: 'de' | 'en' | 'es' | 'fr' | 'pt' | 'it' | 'ar' | 'pl'
     onChartCreated?: (chartKey: string) => void
     onChartPublished?: (chartKey: string) => void
     onChartUpdated?: (chartKey: string) => void
@@ -1277,6 +1285,18 @@ export type MultiLevelPricingForObjects = {
     ticketTypes: TicketType[]
 }
 
+export type SimplePricingForListing = {
+    listing: string
+    originalPrice?: number
+    price: number
+    fee?: number
+}
+
+export type MultiLevelPricingForListing = {
+    listing: string
+    ticketTypes: TicketType[]
+}
+
 export type ChannelPricing = (SimpleChannelPricing | MultiLevelChannelPricing)
 
 export type SimpleChannelPricing = {
@@ -1300,10 +1320,13 @@ export type TicketType = {
     label?: string,
     description?: string
     primary?: boolean
+    unavailable?: boolean
+    unavailableReason?: 'unavailable' | 'soldOut' | (string & {})
 }
 
 export type PricingForCategory = (SimplePricing | MultiLevelPricing)
 export type PricingForObjects = (SimplePricingForObjects | MultiLevelPricingForObjects)
+export type PricingForListing = (SimplePricingForListing | MultiLevelPricingForListing)
 
 // Legacy types for backwards compatibility
 type LegacySimplePricing = Omit<SimplePricing, 'fee'>
@@ -1317,7 +1340,7 @@ export type LegacyPricing = (LegacyPricingForCategory | LegacyPricingForObjects)
 export type Pricing = {
     allFeesIncluded?: boolean
     priceFormatter?: (price: number) => string
-    prices: (PricingForCategory | PricingForObjects)[],
+    prices: (PricingForCategory | PricingForObjects | PricingForListing)[],
     showSectionPricingOverlay?: boolean
 } | LegacyPricing
 
@@ -1435,17 +1458,23 @@ export interface NonBookableTableSeat extends InteractiveObject {
     readonly parent: { type: 'row' | 'table' }
 }
 
+export type WheelchairSpaceType = 'WHEELCHAIR_ACCESSIBLE_SEAT' | 'WHEELCHAIR_SPACE'
+
 export interface AbstractSelectableObject extends InteractiveObject {
     readonly objectType: string
     readonly selected: boolean
     readonly selectedTicketType: string | undefined
     readonly accessible: boolean | undefined
+    readonly wheelchairSpaceType: WheelchairSpaceType | undefined
     readonly hearingImpaired: boolean | undefined
     readonly signLanguageInterpretation: boolean | undefined
     readonly cartServices: boolean | undefined
     readonly plusSize: boolean | undefined
     readonly restrictedView: boolean | undefined
+    readonly vertigo: boolean | undefined
+    readonly limitedLegroom: boolean | undefined
     readonly companionSeat: boolean | undefined
+    readonly semiAmbulatorySeat: boolean | undefined
     readonly liftUpArmrests: boolean | undefined
     readonly displayObjectType: string | undefined
     readonly category?: CategoryToJSON
@@ -1531,6 +1560,20 @@ export interface GeneralAdmissionArea extends AbstractBookableObject {
 export type BookableObject = Seat | GeneralAdmissionArea | Booth | Table
 export type SelectableObject = BookableObject | InteractiveSection
 
+export interface BestAvailableConfig {
+    number?: number
+    categories?: CategoryKey[]
+    zone?: string
+    sections?: string[]
+    accessibleSeats?: number
+    ticketTypes?: Dict<number>
+}
+
+export interface BestAvailableHeldResult {
+    objects: SelectableObject[]
+    nextToEachOther?: boolean
+}
+
 export type ReportGroupedBy = 'zone'
 
 export interface SeatingChart {
@@ -1542,6 +1585,7 @@ export interface SeatingChart {
     findObject: (label: string) => Promise<SelectableObject>
     getReportBySelectability: () => Promise<Object>
     getReportBySelectabilityGroupedBy: (groupBy: ReportGroupedBy) => Promise<Object>
+    holdBestAvailable: (config: BestAvailableConfig) => Promise<BestAvailableHeldResult>
     holdToken: string
     listCategories: () => Promise<Category[]>
     listZones: () => Promise<Zone[]>
@@ -1619,6 +1663,20 @@ export type ListingBySection = {
     minPrice: number
     quantity: number
 }
+
+export interface ConfigListing {
+    id: string
+    objects?: string[]
+    listingType?: string
+    selectAsGroup?: boolean
+}
+
+export interface ListingType {
+    icon?: string
+    label?: string
+}
+
+export type ListingTypes = Dict<ListingType>
 
 // Runtime type helper functions
 export function isBooth(object: SelectableObject): object is Booth {

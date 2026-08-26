@@ -1,7 +1,7 @@
 {
     "name": "@seatsio/seatsio-types",
     "description": "Type definitions for Seats.io",
-    "version": "6.11.0",
+    "version": "6.20.0",
     "license": "MIT",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
@@ -13,7 +13,8 @@
         "url": "https://github.com/seatsio/seatsio-types"
     },
     "devDependencies": {
-        "typescript": "5.2.2",
+        "@types/node": "26.1.1",
+        "typescript": "5.9.3",
         "zx": "8.1.8",
         "semver": "7.6.3"
     },
