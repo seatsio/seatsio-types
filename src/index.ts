@@ -1554,6 +1554,7 @@ export interface GeneralAdmissionArea extends AbstractBookableObject {
     readonly holds: Dict<Dict<number>>
     readonly dataPerEvent: Dict<object>
     readonly bookAsAWhole: boolean
+    readonly labelShown: boolean
 }
 
 export type BookableObject = Seat | GeneralAdmissionArea | Booth | Table
