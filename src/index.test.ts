@@ -577,6 +577,7 @@ seatingChart.listSelectedObjects().then(objects => {
         obj.companionSeat
         obj.semiAmbulatorySeat
         obj.liftUpArmrests
+        obj.aisleSeat
         obj.deselect
         obj.displayObjectType
         obj.label
