@@ -57,7 +57,7 @@ const fullChartRendererConfig: Required<ChartRendererConfigOptions> = {
         { id: 'hot', objects: ['B-1'] }
     ],
     listingTypes: {
-        premium: { label: 'Premium', icon: 'star' },
+        premium: { label: 'Premium', icon: 'star', backgroundColor: '#FFD700', iconColor: '#000000' },
         hot: { label: 'Hot', icon: 'fire' }
     },
     selectedObjects: [
