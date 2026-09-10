@@ -1675,6 +1675,14 @@ export interface ConfigListing {
 export interface ListingType {
     icon?: string
     label?: string
+    /**
+     * The background color of the listing marker, as a CSS hex color (e.g. `#FFD700`).
+     */
+    backgroundColor?: string
+    /**
+     * The color of the listing icon, as a CSS hex color (e.g. `#000000`).
+     */
+    iconColor?: string
 }
 
 export type ListingTypes = Dict<ListingType>
