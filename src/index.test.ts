@@ -237,7 +237,11 @@ const fullChartRendererConfig: Required<ChartRendererConfigOptions> = {
         stylizedLabel: true,
         confirmSelectionOnMobile: 'auto'
     },
-    tooltipInfo: object => "[b]This[/b] object's [i]id[/i] is [pre]" + object.label + "[/pre]"
+    tooltipInfo: object => "[b]This[/b] object's [i]id[/i] is [pre]" + object.label + "[/pre]",
+    defaultRenderingEngine: 'auto',
+    settings3d: {
+        lightPreset: 'exteriorDaytime'
+    }
 }
 
 // Set up a complete Event Manager config
