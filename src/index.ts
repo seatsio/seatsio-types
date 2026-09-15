@@ -20,6 +20,15 @@ export interface Seatsio {
     SeatingChartDesigner: ChartDesignerConstructor
 }
 
+export interface Settings3D {
+    /**
+     * The lighting preset to use for the seating chart.
+     * For more information see the {@link https://docs.seats.io/docs/renderer/settings3d/lightpreset/ documentation}.
+     * @default 'exteriorDaytime'
+     */
+    lightPreset?: 'exteriorDaytime' | 'exteriorSunset' | 'exteriorNight' | 'interior'
+}
+
 export interface CommonConfigOptions {
     /**
      * The parent {@link https://developer.mozilla.org/en-US/docs/Web/API/Element Element} in which the chart gets rendered.
@@ -348,6 +357,14 @@ export interface ChartRendererConfigOptions extends DeprecatedConfigProperties, 
      * Must be a valid UUID if provided.
      */
     ticketBuyerId?: string
+     /**
+     * Determines which rendering engine is used by default.
+     * - `'auto'`: Renders 3D if enabled for the chart, otherwise 2D.
+     * - `'2d'`: Renders the seating chart in 2D, regardless of whether it's been made ready for 3D.
+     * @default 'auto'
+     */
+     defaultRenderingEngine?: 'auto' | '2d'
+     settings3D?: Settings3D
 }
 
 export type ExtractedEventManagerProps = Pick<ChartRendererConfigOptions,
