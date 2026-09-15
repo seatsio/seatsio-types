@@ -364,7 +364,7 @@ export interface ChartRendererConfigOptions extends DeprecatedConfigProperties, 
      * @default 'auto'
      */
      defaultRenderingEngine?: 'auto' | '2d'
-     settings3D?: Settings3D
+     settings3d?: Settings3D
 }
 
 export type ExtractedEventManagerProps = Pick<ChartRendererConfigOptions,

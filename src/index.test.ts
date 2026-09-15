@@ -239,7 +239,7 @@ const fullChartRendererConfig: Required<ChartRendererConfigOptions> = {
     },
     tooltipInfo: object => "[b]This[/b] object's [i]id[/i] is [pre]" + object.label + "[/pre]",
     defaultRenderingEngine: 'auto',
-    settings3D: {
+    settings3d: {
         lightPreset: 'exteriorDaytime'
     }
 }
