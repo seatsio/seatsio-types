@@ -22,6 +22,8 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -36,16 +38,40 @@ jobs:
         env:
           VERSION_TO_BUMP: ${{ inputs.versionToBump }}
           GH_TOKEN: ${{ github.token }}
+      - id: version
+        run: echo "version=$(node -p "require('./package.json').version")" >> "$GITHUB_OUTPUT"
       - run: yarn build
       - run: yarn publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+
+  notify-slack-success:
+    runs-on: ubuntu-latest
+    needs: [ release ]
+    if: success()
+    steps:
+      - id: map-user
+        uses: seatsio/seatsio-github-actions/map-github-user-to-slack@v2
+      - uses: slackapi/slack-github-action@v2.0.0
+        with:
+          webhook: ${{ secrets.SLACK_WEBHOOK_URL }}
+          webhook-type: incoming-webhook
+          payload: |
+            {
+              "text": "✅ `@seatsio/seatsio-types` `${{ needs.release.outputs.version }}` released. Please bump the SDKs, ${{ steps.map-user.outputs.slack_user }}.",
+              "attachments": [
+                {
+                  "color": "good",
+                  "text": "<https://github.com/seatsio/seatsio-angular/actions/workflows/bumpSeatsioTypes.yml|Angular>\n<https://github.com/seatsio/seatsio-react/actions/workflows/bumpSeatsioTypes.yml|React>\n<https://github.com/seatsio/seatsio-react-native/actions/workflows/bumpSeatsioTypes.yml|React Native>\n<https://github.com/seatsio/seatsio-vue/actions/workflows/bumpSeatsioTypes.yml|Vue>"
+                }
+              ]
+            }
 
   notify-slack-failure:
     runs-on: ubuntu-latest
     needs: [ release ]
     if: failure()
     steps:
-      - uses: seatsio/seatsio-github-actions/slack-notify-clientlib-release-failure@v1
+      - uses: seatsio/seatsio-github-actions/slack-notify-clientlib-release-failure@v2
         with:
           webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
