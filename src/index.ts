@@ -1562,6 +1562,8 @@ export interface Table extends AbstractBookableObject {
     readonly center: { x: number; y: number }
 }
 
+export type GeneralAdmissionAreaType = 'generalAdmission' | 'fixedOccupancy' | 'variableOccupancy'
+
 export interface GeneralAdmissionArea extends AbstractBookableObject {
     readonly objectType: 'GeneralAdmissionArea'
     readonly numBooked: number
@@ -1573,6 +1575,7 @@ export interface GeneralAdmissionArea extends AbstractBookableObject {
     readonly dataPerEvent: Dict<object>
     readonly bookAsAWhole: boolean
     readonly labelShown: boolean
+    readonly type: GeneralAdmissionAreaType
 }
 
 export type BookableObject = Seat | GeneralAdmissionArea | Booth | Table
