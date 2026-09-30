@@ -1461,10 +1461,13 @@ export interface InteractiveObject {
     readonly zone?: string
 }
 
+export type TableType = 'bookByTable' | 'bookBySeat' | 'variableOccupancy' | 'generalAdmission'
+
 export interface NonBookableTable extends InteractiveObject {
     readonly seats: Seat[]
     readonly center: { x: number; y: number }
     readonly category?: CategoryToJSON
+    readonly tableType: TableType
 }
 
 export interface NonBookableTableSeat extends InteractiveObject {
@@ -1560,6 +1563,7 @@ export interface Table extends AbstractBookableObject {
     readonly objectType: 'Table'
     readonly seats: NonBookableTableSeat[]
     readonly center: { x: number; y: number }
+    readonly tableType: TableType
 }
 
 export type GeneralAdmissionAreaType = 'generalAdmission' | 'fixedOccupancy' | 'variableOccupancy'
