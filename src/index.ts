@@ -1721,33 +1721,14 @@ export type FilterableAccessibleType =
 export type ListingTypeFilter = 'primary' | 'resale' | 'both'
 
 export interface Filters {
-    /**
-     * Keeps the objects with a price between min and max, inclusive. Either bound can be left out.
-     */
     price?: {
         min?: number
         max?: number
     }
-    /**
-     * Keeps the objects in the specified categories. The array can be a list of category keys or labels. Replaces `filteredCategories`, which is ignored when this is set.
-     */
     categories?: CategoryKey[]
-    /**
-     * Keeps the objects that have at least one of the specified ticket types. Other filters, like price, only look at these ticket types.
-     */
     ticketTypes?: string[]
-    /**
-     * Keeps the objects in the specified sections, by section label.
-     */
     sections?: string[]
-    /**
-     * Keeps the objects that have at least one of the specified accessibility types, along with their companion seats.
-     */
     accessibilityTypes?: FilterableAccessibleType[]
-    /**
-     * `'primary'` keeps the objects that aren't in a listing, `'resale'` keeps the objects that are, and `'both'` keeps all of them.
-     * @default 'both'
-     */
     listingType?: ListingTypeFilter
 }
 
