@@ -113,6 +113,7 @@ export interface ChartRendererConfigOptions extends DeprecatedConfigProperties, 
      * Defines the available listing types, each with an optional icon and label.
      */
     listingTypes?: ListingTypes
+    filters?: Filters
     /**
      * Formats the price into a custom defined string when showing it to and en user. {@link https://docs.seats.io/docs/renderer/config-priceformatter See documentation}
      */
@@ -650,6 +651,7 @@ export type ConfigChange = Pick<
     | 'channels'
     | 'extraConfig'
     | 'filteredCategories'
+    | 'filters'
     | 'maxSelectedObjects'
     | 'numberOfPlacesToSelect'
     | 'objectColor'
@@ -1710,6 +1712,30 @@ export interface ListingType {
 }
 
 export type ListingTypes = Dict<ListingType>
+
+export type FilterableAccessibleType =
+    | 'accessible'
+    | 'semiAmbulatorySeat'
+    | 'hearingImpaired'
+    | 'signLanguageInterpretation'
+    | 'cartServices'
+    | 'plusSize'
+    | 'liftUpArmrests'
+    | 'aisleSeat'
+
+export type ListingTypeFilter = 'primary' | 'resale' | 'both'
+
+export interface Filters {
+    price?: {
+        min?: number
+        max?: number
+    }
+    categories?: CategoryKey[]
+    ticketTypes?: string[]
+    sections?: string[]
+    accessibilityTypes?: FilterableAccessibleType[]
+    listingType?: ListingTypeFilter
+}
 
 // Runtime type helper functions
 export function isBooth(object: SelectableObject): object is Booth {

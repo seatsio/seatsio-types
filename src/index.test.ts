@@ -120,6 +120,14 @@ const fullChartRendererConfig: Required<ChartRendererConfigOptions> = {
     availableCategories: [1, 2, 'Balcony'],
     unavailableCategories: [3, 4, 'Stalls'],
     filteredCategories: ['Stalls'],
+    filters: {
+        price: { min: 10, max: 50 },
+        categories: ['cat1', 2],
+        ticketTypes: ['VIP', 'Regular'],
+        sections: ['section1', 'section2'],
+        accessibilityTypes: ['hearingImpaired', 'accessible'],
+        listingType: 'resale'
+    },
     channels: ['0ef73fd9-693c-5073-98ac-d1dd8cd86536', 'NO_CHANNEL'],
     objectColor: (_object, _defaultColor, _extraConfig) => 'red',
     sectionColor: (_object, _defaultColor, _extraConfig) => 'blue',
