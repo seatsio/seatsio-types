@@ -113,6 +113,9 @@ export interface ChartRendererConfigOptions extends DeprecatedConfigProperties, 
      * Defines the available listing types, each with an optional icon and label.
      */
     listingTypes?: ListingTypes
+    /**
+     * Dims out the objects that don't pass every filter. Filtered-out objects stay selectable.
+     */
     filters?: Filters
     /**
      * Formats the price into a custom defined string when showing it to and en user. {@link https://docs.seats.io/docs/renderer/config-priceformatter See documentation}
@@ -1482,23 +1485,15 @@ export interface NonBookableTableSeat extends InteractiveObject {
 
 export type WheelchairSpaceType = 'WHEELCHAIR_ACCESSIBLE_SEAT' | 'WHEELCHAIR_SPACE'
 
-export interface AbstractSelectableObject extends InteractiveObject {
+export interface AbstractSelectableObject extends InteractiveObject, Readonly<Record<FilterableAccessibleType, boolean | undefined>> {
     readonly objectType: string
     readonly selected: boolean
     readonly selectedTicketType: string | undefined
-    readonly accessible: boolean | undefined
     readonly wheelchairSpaceType: WheelchairSpaceType | undefined
-    readonly hearingImpaired: boolean | undefined
-    readonly signLanguageInterpretation: boolean | undefined
-    readonly cartServices: boolean | undefined
-    readonly plusSize: boolean | undefined
     readonly restrictedView: boolean | undefined
     readonly vertigo: boolean | undefined
     readonly limitedLegroom: boolean | undefined
     readonly companionSeat: boolean | undefined
-    readonly semiAmbulatorySeat: boolean | undefined
-    readonly liftUpArmrests: boolean | undefined
-    readonly aisleSeat: boolean | undefined
     readonly displayObjectType: string | undefined
     readonly category?: CategoryToJSON
     readonly pricing: PricingJson
@@ -1726,14 +1721,33 @@ export type FilterableAccessibleType =
 export type ListingTypeFilter = 'primary' | 'resale' | 'both'
 
 export interface Filters {
+    /**
+     * Keeps the objects with a price between min and max, inclusive. Either bound can be left out.
+     */
     price?: {
         min?: number
         max?: number
     }
+    /**
+     * Keeps the objects in the specified categories. The array can be a list of category keys or labels. Replaces `filteredCategories`, which is ignored when this is set.
+     */
     categories?: CategoryKey[]
+    /**
+     * Keeps the objects that have at least one of the specified ticket types. Other filters, like price, only look at these ticket types.
+     */
     ticketTypes?: string[]
+    /**
+     * Keeps the objects in the specified sections, by section label.
+     */
     sections?: string[]
+    /**
+     * Keeps the objects that have at least one of the specified accessibility types, along with their companion seats.
+     */
     accessibilityTypes?: FilterableAccessibleType[]
+    /**
+     * `'primary'` keeps the objects that aren't in a listing, `'resale'` keeps the objects that are, and `'both'` keeps all of them.
+     * @default 'both'
+     */
     listingType?: ListingTypeFilter
 }
 
