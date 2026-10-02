@@ -114,6 +114,10 @@ export interface ChartRendererConfigOptions extends DeprecatedConfigProperties, 
      */
     listingTypes?: ListingTypes
     /**
+     * Dims out the objects that don't pass every filter. Filtered-out objects stay selectable.
+     */
+    filters?: Filters
+    /**
      * Formats the price into a custom defined string when showing it to and en user. {@link https://docs.seats.io/docs/renderer/config-priceformatter See documentation}
      */
     priceFormatter?: (price: number) => string
@@ -650,6 +654,7 @@ export type ConfigChange = Pick<
     | 'channels'
     | 'extraConfig'
     | 'filteredCategories'
+    | 'filters'
     | 'maxSelectedObjects'
     | 'numberOfPlacesToSelect'
     | 'objectColor'
@@ -1480,23 +1485,15 @@ export interface NonBookableTableSeat extends InteractiveObject {
 
 export type WheelchairSpaceType = 'WHEELCHAIR_ACCESSIBLE_SEAT' | 'WHEELCHAIR_SPACE'
 
-export interface AbstractSelectableObject extends InteractiveObject {
+export interface AbstractSelectableObject extends InteractiveObject, Readonly<Record<FilterableAccessibleType, boolean | undefined>> {
     readonly objectType: string
     readonly selected: boolean
     readonly selectedTicketType: string | undefined
-    readonly accessible: boolean | undefined
     readonly wheelchairSpaceType: WheelchairSpaceType | undefined
-    readonly hearingImpaired: boolean | undefined
-    readonly signLanguageInterpretation: boolean | undefined
-    readonly cartServices: boolean | undefined
-    readonly plusSize: boolean | undefined
     readonly restrictedView: boolean | undefined
     readonly vertigo: boolean | undefined
     readonly limitedLegroom: boolean | undefined
     readonly companionSeat: boolean | undefined
-    readonly semiAmbulatorySeat: boolean | undefined
-    readonly liftUpArmrests: boolean | undefined
-    readonly aisleSeat: boolean | undefined
     readonly displayObjectType: string | undefined
     readonly category?: CategoryToJSON
     readonly pricing: PricingJson
@@ -1710,6 +1707,30 @@ export interface ListingType {
 }
 
 export type ListingTypes = Dict<ListingType>
+
+export type FilterableAccessibleType =
+    | 'accessible'
+    | 'semiAmbulatorySeat'
+    | 'hearingImpaired'
+    | 'signLanguageInterpretation'
+    | 'cartServices'
+    | 'plusSize'
+    | 'liftUpArmrests'
+    | 'aisleSeat'
+
+export type ListingTypeFilter = 'primary' | 'resale' | 'both'
+
+export interface Filters {
+    price?: {
+        min?: number
+        max?: number
+    }
+    categories?: CategoryKey[]
+    ticketTypes?: string[]
+    sections?: string[]
+    accessibilityTypes?: FilterableAccessibleType[]
+    listingType?: ListingTypeFilter
+}
 
 // Runtime type helper functions
 export function isBooth(object: SelectableObject): object is Booth {
