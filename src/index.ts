@@ -217,6 +217,7 @@ export interface ChartRendererConfigOptions extends DeprecatedConfigProperties, 
     unavailableCategories?: CategoryKey[]
     /**
      * Leaves the specified categories normally visible, while making all others dimmed out. The array can be a list of category keys or labels.
+     * @deprecated Use `filters.categories` instead.
      */
     filteredCategories?: CategoryKey[]
     objectColor?: (object: SelectableObject, defaultColor: string, extraConfig: ExtraConfig) => string
