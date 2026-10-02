@@ -520,6 +520,9 @@ export interface BaseEventManagerOrderModeConfigOptions extends BaseEventManager
     categoryFilter?: CategoryFilter
     availableCategories?: CategoryKey[]
     unavailableCategories?: CategoryKey[]
+    /**
+     * @deprecated Use `filters.categories` instead.
+     */
     filteredCategories?: CategoryKey[]
     filters?: Pick<Filters, 'categories'>
     session?: Session
