@@ -520,6 +520,7 @@ export interface BaseEventManagerOrderModeConfigOptions extends BaseEventManager
     availableCategories?: CategoryKey[]
     unavailableCategories?: CategoryKey[]
     filteredCategories?: CategoryKey[]
+    filters?: Pick<Filters, 'categories'>
     session?: Session
     holdToken?: string
     showLegend?: boolean
