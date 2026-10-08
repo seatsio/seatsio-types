@@ -111,6 +111,7 @@ export interface ChartRendererConfigOptions extends DeprecatedConfigProperties, 
     listings?: ConfigListing[]
     /**
      * Defines the available listing types, each with an optional icon and label.
+     * The reserved name `resale` styles every resale listing that has no explicit `listingType` in `listings`.
      */
     listingTypes?: ListingTypes
     /**
