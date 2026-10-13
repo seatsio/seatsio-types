@@ -647,6 +647,7 @@ export interface ChartDesignerFeatures {
     icons?: boolean
     images?: boolean
     labeling?: boolean
+    multipleFloors?: boolean
     nodes?: boolean
     objectProperties?: boolean
     publishedSectionLabel?: boolean
