@@ -525,7 +525,7 @@ export interface BaseEventManagerOrderModeConfigOptions extends BaseEventManager
      * @deprecated Use `filters.categories` instead.
      */
     filteredCategories?: CategoryKey[]
-    filters?: Pick<Filters, 'categories'>
+    filters?: Filters
     session?: Session
     holdToken?: string
     showLegend?: boolean

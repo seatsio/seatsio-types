@@ -405,7 +405,14 @@ const eventManagerCreateOrderModeConfig: Required<EventManagerCreateOrderModeCon
     availableCategories: [1, 2, 'Balcony'],
     unavailableCategories: [3, 4, 'Stalls'],
     filteredCategories: ['Stalls'],
-    filters: { categories: ['Stalls'] },
+    filters: {
+        price: { min: 10, max: 50 },
+        categories: ['Stalls'],
+        ticketTypes: ['VIP', 'Regular'],
+        sections: ['section1', 'section2'],
+        accessibilityTypes: ['hearingImpaired', 'accessible'],
+        listingType: 'resale'
+    },
     channels: ['0ef73fd9-693c-5073-98ac-d1dd8cd86536', 'NO_CHANNEL'],
     session: 'continue',
     holdToken: 'myToken',
@@ -443,7 +450,14 @@ const eventManagerEditOrderModeConfig: Required<EventManagerEditOrderModeConfigO
     availableCategories: [1, 2, 'Balcony'],
     unavailableCategories: [3, 4, 'Stalls'],
     filteredCategories: ['Stalls'],
-    filters: { categories: ['Stalls'] },
+    filters: {
+        price: { min: 10, max: 50 },
+        categories: ['Stalls'],
+        ticketTypes: ['VIP', 'Regular'],
+        sections: ['section1', 'section2'],
+        accessibilityTypes: ['hearingImpaired', 'accessible'],
+        listingType: 'resale'
+    },
     channels: ['0ef73fd9-693c-5073-98ac-d1dd8cd86536', 'NO_CHANNEL'],
     session: 'continue',
     holdToken: 'myToken',
