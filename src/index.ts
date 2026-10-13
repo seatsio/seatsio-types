@@ -627,12 +627,21 @@ export interface ChartDesignerSafeModeConfigOptions extends BaseChartDesignerCon
 }
 
 export interface ChartDesignerFeatures {
+    '3D'?: boolean
     'tables.bookAsAWhole'?: boolean
+    'tables.generalAdmission'?: boolean
+    'tables.variableOccupancy'?: boolean
+    'venueType.simple'?: boolean
+    'venueType.withSectionsAndFloors'?: boolean
+    'venueType.withZones'?: boolean
     areas?: boolean
     backgroundImage?: boolean
     booths?: boolean
+    categoryKeys?: boolean
     categoryList?: boolean
+    chartName?: boolean
     contextActions?: boolean
+    displayedLabels?: boolean
     firstTimeTutorial?: boolean
     focalPoint?: boolean
     icons?: boolean
