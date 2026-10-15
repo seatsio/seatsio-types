@@ -491,7 +491,11 @@ export interface EventManagerFilterSectionsModeConfigOptions extends BaseEventMa
 export interface EventManagerSelectModeConfigOptions extends BaseEventManagerConfigOptions, WithEvents {
     mode: 'select'
     maxSelectedObjects?: SelectionLimiter
+    /**
+     * @deprecated Use `partySize` instead.
+     */
     numberOfPlacesToSelect?: number
+    partySize?: number
     isObjectSelectable?: (object: SelectableObject) => boolean
     selectionBy?: 'places' | 'objects'
     ticketTypes?: TicketTypeJsonWithoutPrice[]
@@ -529,7 +533,11 @@ export interface BaseEventManagerOrderModeConfigOptions extends BaseEventManager
     selectionValidators?: SelectionValidator[]
     maxSelectedObjects?: SelectionLimiter
     objectWithoutPricingSelectable?: boolean
+    /**
+     * @deprecated Use `filterControls.category` instead.
+     */
     categoryFilter?: CategoryFilter
+    filterControls?: Pick<FilterControls, 'category'>
     availableCategories?: CategoryKey[]
     unavailableCategories?: CategoryKey[]
     /**
@@ -559,7 +567,11 @@ export interface BaseEventManagerOrderModeConfigOptions extends BaseEventManager
 
 export interface EventManagerCreateOrderModeConfigOptions extends BaseEventManagerOrderModeConfigOptions {
     mode: 'createOrder'
+    /**
+     * @deprecated Use `partySize` instead.
+     */
     numberOfPlacesToSelect?: number
+    partySize?: number
 }
 
 export interface EventManagerEditOrderModeConfigOptions extends BaseEventManagerOrderModeConfigOptions {

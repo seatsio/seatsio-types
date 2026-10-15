@@ -386,6 +386,7 @@ const eventManagerSelectModeConfig: Required<EventManagerSelectModeConfigOptions
     mode: 'select',
     maxSelectedObjects: 1,
     numberOfPlacesToSelect: 1,
+    partySize: 2,
     selectedObjects: [],
     selectionBy: 'places',
     ticketTypes: [],
@@ -418,6 +419,7 @@ const eventManagerCreateOrderModeConfig: Required<EventManagerCreateOrderModeCon
     maxSelectedObjects: 4,
     objectWithoutPricingSelectable: true,
     categoryFilter: { enabled: true },
+    filterControls: { category: { enabled: true, sortBy: 'name' } },
     availableCategories: [1, 2, 'Balcony'],
     unavailableCategories: [3, 4, 'Stalls'],
     filteredCategories: ['Stalls'],
@@ -435,6 +437,7 @@ const eventManagerCreateOrderModeConfig: Required<EventManagerCreateOrderModeCon
     legend: {},
     showLegend: true,
     numberOfPlacesToSelect: 2,
+    partySize: 3,
 
     // Callbacks.
     onSessionInitialized: _holdToken => { },
@@ -463,6 +466,7 @@ const eventManagerEditOrderModeConfig: Required<EventManagerEditOrderModeConfigO
     maxSelectedObjects: 4,
     objectWithoutPricingSelectable: true,
     categoryFilter: { enabled: true },
+    filterControls: { category: { enabled: true, sortBy: 'name' } },
     availableCategories: [1, 2, 'Balcony'],
     unavailableCategories: [3, 4, 'Stalls'],
     filteredCategories: ['Stalls'],
