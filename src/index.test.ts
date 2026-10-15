@@ -90,6 +90,12 @@ const fullChartRendererConfig: Required<ChartRendererConfigOptions> = {
         },
     ],
     numberOfPlacesToSelect: 3,
+    partySize: {
+        prompt: true,
+        filter: true,
+        min: 2,
+        max: 6
+    },
     multiSelectEnabled: true,
     selectedObjectsInputName: 'inputName',
     objectWithoutPricingSelectable: true,
@@ -127,6 +133,16 @@ const fullChartRendererConfig: Required<ChartRendererConfigOptions> = {
         sections: ['section1', 'section2'],
         accessibilityTypes: ['hearingImpaired', 'accessible'],
         listingType: 'resale'
+    },
+    filterControls: {
+        category: {
+            enabled: true,
+            multiSelect: false,
+            zoomOnSelect: true,
+            sortBy: 'priceDescending'
+        },
+        price: { enabled: false },
+        accessibility: { enabled: true }
     },
     channels: ['0ef73fd9-693c-5073-98ac-d1dd8cd86536', 'NO_CHANNEL'],
     objectColor: (_object, _defaultColor, _extraConfig) => 'red',
@@ -596,6 +612,7 @@ new seatsio.SeatingChartDesigner({
 seatingChart.doSelectObjects(['A1', { label: 'someLabel', ticketType: 'aTicketType', amount: 2 }, { label: 'anotherLabel', amount: 2 }])
 seatingChart.trySelectObjects(['A1', { label: 'someLabel', ticketType: 'aTicketType', amount: 2 }, { label: 'anotherLabel', amount: 2 }])
 seatingChart.deselectObjects(['A1', { label: 'someLabel', ticketType: 'aTicketType', amount: 2 }])
+seatingChart.changeConfig({ partySize: 3 })
 
 seatingChart.listSelectedObjects().then(objects => {
     objects.forEach(obj => {

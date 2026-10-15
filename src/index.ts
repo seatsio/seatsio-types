@@ -119,6 +119,10 @@ export interface ChartRendererConfigOptions extends DeprecatedConfigProperties, 
      */
     filters?: Filters
     /**
+     * Used to enable or disable the category, price and accessibility filters, as well as configuring certain aspects of them. {@link https://docs.seats.io/docs/renderer/filtercontrols See documentation}
+     */
+    filterControls?: FilterControls
+    /**
      * Formats the price into a custom defined string when showing it to and en user. {@link https://docs.seats.io/docs/renderer/config-priceformatter See documentation}
      */
     priceFormatter?: (price: number) => string
@@ -155,8 +159,13 @@ export interface ChartRendererConfigOptions extends DeprecatedConfigProperties, 
     maxSelectedObjects?: SelectionLimiter
     /**
      * Activates one-click selection mode. {@link https://docs.seats.io/docs/renderer/config-numberofplacestoselect See documentation}
+     * @deprecated Use `partySize` instead.
      */
     numberOfPlacesToSelect?: number
+    /**
+     * Activates one-click selection of an exact number of places, or lets the ticket buyer choose their party size. {@link https://docs.seats.io/docs/renderer/config-partysize See documentation}
+     */
+    partySize?: PartySize
     /**
      * If true, users will get a button on the top left hand side they can use to switch between different selection modes: seat selection, rectangle selection or lasso selection. {@link https://docs.seats.io/docs/renderer/config-multiselectenabled See documentation}
      * @default false
@@ -206,6 +215,7 @@ export interface ChartRendererConfigOptions extends DeprecatedConfigProperties, 
     showViewFromYourSeatOnDesktop?: boolean
     /**
      * Used to enable or disable the category filter GUI, as well as configuring certain aspects of it. {@link https://docs.seats.io/docs/renderer/categoryfilter See documentation}
+     * @deprecated Use `filterControls.category` instead.
      */
     categoryFilter?: CategoryFilter
     /**
@@ -273,6 +283,7 @@ export interface ChartRendererConfigOptions extends DeprecatedConfigProperties, 
     /**
      * Whether to show the accessibility filter. See the {@link https://docs.seats.io/docs/renderer/config-showAccessibilityFilter documentation} for more information.
      * @default true
+     * @deprecated Use `filterControls.accessibility` instead.
      */
     showAccessibilityFilter?: boolean
     /**
@@ -677,7 +688,9 @@ export type ConfigChange = Pick<
     | 'objectLabel'
     | 'pricing'
     | 'unavailableCategories'
->
+> & {
+    partySize?: number
+}
 
 type ChartRendererBuiltInStrings = { [key in ChartRendererStringKey]: string }
 type EventAndChartManagerBuiltInStrings = { [key in EventAndChartManagerStringKey]: string }
@@ -1746,6 +1759,45 @@ export interface Filters {
     sections?: string[]
     accessibilityTypes?: FilterableAccessibleType[]
     listingType?: ListingTypeFilter
+}
+
+export interface FilterControls {
+    category?: CategoryFilter
+    price?: {
+        /**
+         * If true, the price filter will be visible. Cannot be used in combination with `category.enabled: true`.
+         * @default false
+         */
+        enabled?: boolean
+    }
+    accessibility?: {
+        /**
+         * If true, the accessibility filter will be visible.
+         * @default true
+         */
+        enabled?: boolean
+    }
+}
+
+export type PartySize = number | {
+    /**
+     * If true, the ticket buyer is asked how many places they need before they can use the map.
+     * @default false
+     */
+    prompt?: boolean
+    /**
+     * If true, a party size filter will be visible.
+     * @default false
+     */
+    filter?: boolean
+    /**
+     * @default 1
+     */
+    min?: number
+    /**
+     * @default 8
+     */
+    max?: number
 }
 
 // Runtime type helper functions
