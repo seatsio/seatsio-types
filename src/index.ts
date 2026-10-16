@@ -159,7 +159,6 @@ export interface ChartRendererConfigOptions extends DeprecatedConfigProperties, 
     maxSelectedObjects?: SelectionLimiter
     /**
      * Activates one-click selection mode. {@link https://docs.seats.io/docs/renderer/config-numberofplacestoselect See documentation}
-     * @deprecated Use `partySize` instead.
      */
     numberOfPlacesToSelect?: number
     /**
