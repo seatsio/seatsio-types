@@ -490,9 +490,6 @@ export interface EventManagerFilterSectionsModeConfigOptions extends BaseEventMa
 export interface EventManagerSelectModeConfigOptions extends BaseEventManagerConfigOptions, WithEvents {
     mode: 'select'
     maxSelectedObjects?: SelectionLimiter
-    /**
-     * @deprecated Use `partySize` instead.
-     */
     numberOfPlacesToSelect?: number
     partySize?: number
     isObjectSelectable?: (object: SelectableObject) => boolean
@@ -566,9 +563,6 @@ export interface BaseEventManagerOrderModeConfigOptions extends BaseEventManager
 
 export interface EventManagerCreateOrderModeConfigOptions extends BaseEventManagerOrderModeConfigOptions {
     mode: 'createOrder'
-    /**
-     * @deprecated Use `partySize` instead.
-     */
     numberOfPlacesToSelect?: number
     partySize?: number
 }
