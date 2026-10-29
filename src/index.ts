@@ -1411,6 +1411,7 @@ interface SelectionValidatorNoOrphanSeats {
     mode?: 'strict' | 'lenient'
     highlight?: boolean
     ignoreCategories?: boolean
+    ignoreResale?: boolean
 }
 
 interface SelectionValidatorConsecutiveSeats {

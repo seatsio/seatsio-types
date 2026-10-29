@@ -74,7 +74,7 @@ const fullChartRendererConfig: Required<ChartRendererConfigOptions> = {
     selectionValidators: [
         { type: 'minimumSelectedPlaces', minimum: 4 },
         { type: 'consecutiveSeats' },
-        { type: 'noOrphanSeats', highlight: false, mode: 'lenient', ignoreCategories: false},
+        { type: 'noOrphanSeats', highlight: false, mode: 'lenient', ignoreCategories: false, ignoreResale: true },
         { type: 'companionSeats', enabled: true}
     ],
     maxSelectedObjects: [
