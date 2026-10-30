@@ -666,6 +666,7 @@ export interface ChartDesignerFeatures {
     multipleFloors?: boolean
     nodes?: boolean
     objectProperties?: boolean
+    playingFields?: boolean
     publishedSectionLabel?: boolean
     publishing?: boolean
     referenceChart?: boolean
