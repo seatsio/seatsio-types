@@ -507,7 +507,7 @@ const chartDesignerConfigNormalMode: Required<ChartDesignerConfigOptions> = {
     chartKey: 'myChartKey',
     language: 'en',
     features: {
-        disabled: ['areas', 'backgroundImage'],
+        disabled: ['areas', 'backgroundImage', 'playingFields'],
         readOnly: ['categoryKeys', 'categoryList', 'chartName']
     },
     mode: 'normal',
