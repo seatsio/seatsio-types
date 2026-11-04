@@ -27,6 +27,10 @@ export interface Settings3D {
      * @default 'exteriorDaytime'
      */
     lightPreset?: 'exteriorDaytime' | 'exteriorSunset' | 'exteriorNight' | 'interior'
+    /** Overrides the default ground color for the seating chart. 
+     * For more information see the {@link https://docs.seats.io/docs/renderer/settings3d/groundcolor/ documentation}.
+    */
+    groundColor?: string
 }
 
 export interface CommonConfigOptions {
