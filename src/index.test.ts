@@ -102,6 +102,7 @@ const fullChartRendererConfig: Required<ChartRendererConfigOptions> = {
     objectWithoutCategorySelectable: true,
     objectPopover: {
         showAvailability: false,
+        showEntrance: false,
         showCategory: true,
         showLabel: true,
         showPricing: true,
@@ -302,7 +303,8 @@ const fullEventManagerConfig: Required<EventManagerConfigOptions> = {
     mode: 'manageObjectStatuses',
     objectPopover: {
         showOrderId: true,
-        showTechnicalLabel: false
+        showTechnicalLabel: false,
+        showEntrance: false
     },
     secretKey: 'mySecretKey',
     viewSettings: {
