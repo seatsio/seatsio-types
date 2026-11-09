@@ -452,6 +452,11 @@ export interface BaseEventManagerConfigOptions extends CommonConfigOptions, Extr
          * @default false
          */
         showTechnicalLabel?: boolean
+        /**
+         * Show the entrance of the object, if it has one.
+         * @default false
+         */
+        showEntrance?: boolean
     }
     viewSettings?: {
         /**
@@ -524,6 +529,7 @@ export interface EventManagerSelectModeConfigOptions extends BaseEventManagerCon
         showLabel?: boolean
         showCategory?: boolean
         showChannel?: boolean
+        showEntrance?: boolean
     }
 }
 
@@ -1152,6 +1158,11 @@ export interface ChartRendererObjectPopover {
      * @default true
      */
     showCategory?: boolean
+    /**
+     * If true, the entrance of the object will be displayed, if it has one.
+     * @default false
+     */
+    showEntrance?: boolean
     /**
      * If true, the section label, row label and/or seat label of the object will be visible. If false, no labeling will be shown.
      * @default true
