@@ -75,6 +75,7 @@ const fullChartRendererConfig: Required<ChartRendererConfigOptions> = {
         { type: 'minimumSelectedPlaces', minimum: 4 },
         { type: 'consecutiveSeats' },
         { type: 'noOrphanSeats', highlight: false, mode: 'lenient', ignoreCategories: false, ignoreResale: true },
+        { type: 'noOrphanSeats', mode: 'superStrict' },
         { type: 'companionSeats', enabled: true}
     ],
     maxSelectedObjects: [

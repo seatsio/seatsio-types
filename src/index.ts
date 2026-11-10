@@ -1424,7 +1424,7 @@ export type SelectionValidator =
 
 interface SelectionValidatorNoOrphanSeats {
     type: 'noOrphanSeats'
-    mode?: 'strict' | 'lenient'
+    mode?: 'strict' | 'lenient' | 'superStrict'
     highlight?: boolean
     ignoreCategories?: boolean
     ignoreResale?: boolean
