@@ -97,6 +97,9 @@ const fullChartRendererConfig: Required<ChartRendererConfigOptions> = {
         min: 2,
         max: 6
     },
+    stepThrough: {
+        display: 'alwaysOn'
+    },
     multiSelectEnabled: true,
     selectedObjectsInputName: 'inputName',
     objectWithoutPricingSelectable: true,

@@ -170,6 +170,10 @@ export interface ChartRendererConfigOptions extends DeprecatedConfigProperties, 
      */
     partySize?: PartySize
     /**
+     * Ticket buyers can choose their places from a list instead of the map. {@link https://docs.seats.io/docs/renderer/config-stepthrough See documentation}
+     */
+    stepThrough?: StepThrough
+    /**
      * If true, users will get a button on the top left hand side they can use to switch between different selection modes: seat selection, rectangle selection or lasso selection. {@link https://docs.seats.io/docs/renderer/config-multiselectenabled See documentation}
      * @default false
      */
@@ -1820,6 +1824,14 @@ export type PartySize = number | {
      * @default 8
      */
     max?: number
+}
+
+export type StepThrough = {
+    /**
+     * `hidden` keeps the button out of sight until it receives keyboard focus. `alwaysOn` shows it in the bottom left corner of the chart.
+     * @default 'hidden'
+     */
+    display?: 'hidden' | 'alwaysOn'
 }
 
 // Runtime type helper functions
