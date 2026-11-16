@@ -170,7 +170,7 @@ export interface ChartRendererConfigOptions extends DeprecatedConfigProperties, 
      */
     partySize?: PartySize
     /**
-     * Lets ticket buyers choose their places from a list instead of the map. {@link https://docs.seats.io/docs/renderer/config-stepthrough See documentation}
+     * Ticket buyers can choose their places from a list instead of the map. {@link https://docs.seats.io/docs/renderer/config-stepthrough See documentation}
      */
     stepThrough?: StepThrough
     /**
