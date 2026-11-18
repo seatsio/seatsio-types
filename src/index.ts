@@ -537,7 +537,7 @@ export interface EventManagerSelectModeConfigOptions extends BaseEventManagerCon
     }
 }
 
-export interface BaseEventManagerOrderModeConfigOptions extends BaseEventManagerConfigOptions, WithEvents {
+export interface BaseEventManagerOrderModeConfigOptions extends BaseEventManagerConfigOptions, WithEvents, Pick<ChartRendererConfigOptions, 'objectIcon'> {
     pricing?: Pricing
     priceFormatter?: (price: number) => string
     selectionValidators?: SelectionValidator[]
