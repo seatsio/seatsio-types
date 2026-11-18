@@ -418,6 +418,7 @@ const eventManagerCreateOrderModeConfig: Required<EventManagerCreateOrderModeCon
     ...fullEventManagerConfig,
     mode: 'createOrder',
     events: ['eventA', 'eventB'],
+    objectIcon: (_object, _defaultIcon, _extraConfig) => 'circle',
     pricing: [
         { category: 'A', price: 10, originalPrice: 15 }
     ],
@@ -465,6 +466,7 @@ const eventManagerEditOrderModeConfig: Required<EventManagerEditOrderModeConfigO
     ...fullEventManagerConfig,
     mode: 'editOrder',
     events: ['eventA', 'eventB'],
+    objectIcon: (_object, _defaultIcon, _extraConfig) => 'circle',
     pricing: [
         { category: 'A', price: 10, originalPrice: 15 }
     ],

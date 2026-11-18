@@ -560,6 +560,14 @@ export interface BaseEventManagerOrderModeConfigOptions extends BaseEventManager
     showLegend?: boolean
     legend?: Legend
     channels?: string[]
+    /**
+     * @param object
+     * @param defaultIcon
+     * @param extraConfig
+     * @returns A string with the name of a FontAwesome v4.7.0 icon. {@link https://fontawesome.com/v4.7.0/icons/ See the full list of available icons}.
+     * For more details, {@link https://docs.seats.io/docs/renderer/config-objecticon see the documentation}.
+     */
+    objectIcon?: (object: SelectableObject, defaultIcon: string | null, extraConfig?: ExtraConfig) => string
 
     // callbacks
     onFilteredCategoriesChanged?: (categories: Category[]) => void
